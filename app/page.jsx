@@ -5,21 +5,21 @@ export default function Home() {
   const [chapterData, setChapterData] = useState(null);
   const [bookmarks, setBookmarks] = useState([]);
   const liveChapterUrl =
-    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/chapters/PSA.107?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
+    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/chapters/PSA.3?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
 
   const fetchChapter = async () => {
     try {
       const response = await fetch(liveChapterUrl, {
         method: "GET",
         headers: {
-          "api-key": "c04f03399850bd27c204a9a904a59198",
+          "api-key": "ec154d957ebe133d3aa9840c7d951dc8",
           "Content-Type": "application/json",
         },
       });
 
       const data = await response.json();
       const chapterData = data?.data;
-      setChapterData(chapterData); // Store the fetched chapter data in state
+      setChapterData(chapterData);
     } catch (error) {
       console.error(error);
     }
@@ -29,16 +29,28 @@ export default function Home() {
     fetchChapter();
   }, []);
 
-  console.log(chapterData);
   if (!chapterData) {
-    return <div>Loading...</div>; // Show loading message until data is fetched
+    return <div>Loading...</div>;
   }
 
   const { content, reference } = chapterData;
 
+  // Function to filter valid verses
+  const getValidVerseText = (verse) => {
+    if (!verse || !verse.items) return null;
+
+    // Concatenate all text from the verse's items
+    return verse.items
+      .filter((item) => item?.text || item?.items?.[0]?.text) // Ensure the item has text
+      .map((item) => item?.text || item?.items?.[0]?.text) // Get the text
+      .join(" "); // Join the text together
+  };
+
   // bookmarks
   const toggleBookmark = (verse) => {
-    const verseId = verse?.items[0]?.attrs?.sid; // Use sid as the unique identifier
+    const verseId = verse?.items[0]?.attrs?.sid;
+    if (!verseId) return;
+
     setBookmarks((prevBookmarks) => {
       const isBookmarked = prevBookmarks.some((b) => b?.id === verseId);
       if (isBookmarked) {
@@ -48,7 +60,6 @@ export default function Home() {
       }
     });
   };
-
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -60,35 +71,31 @@ export default function Home() {
             {reference}
           </h4>
 
-          {content?.map((verse, index) => (
-            <div key={index}>
-              <div>
-                <span className="mr-2">{verse?.items[0]?.attrs?.number}</span>
-                <span>
-                  {verse?.items[1]?.items?.[0]?.text || ""}
-                  {verse?.items[1]?.text}{" "}
-                  {verse?.items[2]?.items?.[0]?.text || ""}{" "}
-                  {verse?.items[3]?.text}{" "}
-                  {verse?.items[4]?.items?.[0]?.text || ""}{" "}
-                  {verse?.items[5]?.text}{" "}
-                  {verse?.items[6]?.items?.[0]?.text || ""}{" "}
-                  {verse?.items[7]?.text}
-                </span>
+          {content?.map((verse, index) => {
+            const verseText = getValidVerseText(verse);
+
+            if (!verseText) return null;
+
+            const verseId = verse?.items[0]?.attrs?.sid;
+
+            return (
+              <div key={index} className="mb-4">
+                <span>{verseText}</span>
                 <button
                   onClick={() => toggleBookmark(verse)}
-                  className={`px-2 py-1 text-sm rounded ${
-                    bookmarks.some((b) => b?.id === verse?.items[0]?.attrs?.sid)
+                  className={`ml-2 px-2 py-1 text-sm rounded ${
+                    bookmarks.some((b) => b?.id === verseId)
                       ? "bg-red-500 text-white"
                       : "bg-gray-300 text-black"
                   }`}
                 >
-                  {bookmarks.some((b) => b?.id === verse?.items[0]?.attrs?.sid)
+                  {bookmarks.some((b) => b?.id === verseId)
                     ? "Remove Bookmark"
                     : "Bookmark"}
                 </button>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
