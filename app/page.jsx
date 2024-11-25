@@ -74,19 +74,19 @@ export default function Home() {
                   {verse?.items[6]?.items?.[0]?.text || ""}{" "}
                   {verse?.items[7]?.text}
                 </span>
+                <button
+                  onClick={() => toggleBookmark(verse)}
+                  className={`px-2 py-1 text-sm rounded ${
+                    bookmarks.some((b) => b?.id === verse?.items[0]?.attrs?.sid)
+                      ? "bg-red-500 text-white"
+                      : "bg-gray-300 text-black"
+                  }`}
+                >
+                  {bookmarks.some((b) => b?.id === verse?.items[0]?.attrs?.sid)
+                    ? "Remove Bookmark"
+                    : "Bookmark"}
+                </button>
               </div>
-              <button
-                onClick={() => toggleBookmark(verse)}
-                className={`px-2 py-1 text-sm rounded ${
-                  bookmarks.some((b) => b?.id === verse?.items[0]?.attrs?.sid)
-                    ? "bg-red-500 text-white"
-                    : "bg-gray-300 text-black"
-                }`}
-              >
-                {bookmarks.some((b) => b?.id === verse?.items[0]?.attrs?.sid)
-                  ? "Remove Bookmark"
-                  : "Bookmark"}
-              </button>
             </div>
           ))}
         </div>
