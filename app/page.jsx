@@ -44,6 +44,15 @@ export default function Home() {
                 <sup>{item.attrs.number}</sup>
               </span>
             );
+          } else if (item.name === "char") {
+            return (
+              <span
+                key={index}
+                className={`char ${item.attrs.style || "default-style"}`}
+              >
+                {item.items && renderContent(item.items)}
+              </span>
+            );
           }
           break;
         case "text":
@@ -66,6 +75,8 @@ export default function Home() {
           case "tag":
             if (item.name === "verse") {
               return `${item.attrs.number} `; // Include verse number
+            } else if (item.name === "char") {
+              return item.items && renderContentAsText(item.items);
             }
             break;
           case "text":
