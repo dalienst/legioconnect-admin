@@ -28,6 +28,7 @@ const renderContentAsText = (items) => {
 export default function Home() {
   const [chapterData, setChapterData] = useState(null);
   const [separatedVerses, setSeparatedVerses] = useState([]);
+  const [highlights, setHighlights] = useState([]);
   const liveChapterUrl =
     "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-02/chapters/NUM.2?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
 
@@ -85,6 +86,32 @@ export default function Home() {
     }));
   };
 
+  const toggleHighlight = (verse) => {
+    const isHighlighted = highlights.some(
+      (h) => h.verseNumber === verse.verseNumber
+    );
+
+    let updatedHighlights;
+    if (isHighlighted) {
+      // Remove highlight if already highlighted
+      updatedHighlights = highlights.filter(
+        (h) => h.verseNumber !== verse.verseNumber
+      );
+    } else {
+      // Add highlight if not already highlighted
+      updatedHighlights = [...highlights, verse];
+    }
+
+    setHighlights(updatedHighlights);
+
+    // Store updated highlights in localStorage
+    localStorage.setItem("highlights", JSON.stringify(updatedHighlights));
+  };
+
+  if (!chapterData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="card bg-base-300 shadow-xl">
@@ -97,12 +124,38 @@ export default function Home() {
 
           <div className="content">
             {separatedVerses.map((verse, index) => (
-              <div key={index} className="mb-4 cursor-pointer" onClick={() => console.log(verse)}>
+              <div
+                key={index}
+                className={`mb-4 cursor-pointer ${
+                  highlights.some((h) => h.verseNumber === verse.verseNumber)
+                    ? "bg-yellow-200"
+                    : ""
+                }`}
+                onClick={() => toggleHighlight(verse)}
+              >
                 <div className="verse-item">
-                  <span className="verse-number text-red-600 font-bold">
+                  <span
+                    className={`verse-number font-bold ${
+                      highlights.some(
+                        (h) => h.verseNumber === verse.verseNumber
+                      )
+                        ? "text-yellow-700"
+                        : "text-red-600"
+                    }`}
+                  >
                     {verse?.verseNumber}:
                   </span>
-                  <span className="verse-text ml-2">{verse?.text}</span>
+                  <span
+                    className={`verse-text ml-2 ${
+                      highlights.some(
+                        (h) => h.verseNumber === verse.verseNumber
+                      )
+                        ? "text-yellow-800"
+                        : ""
+                    }`}
+                  >
+                    {verse?.text}
+                  </span>
                 </div>
               </div>
             ))}
