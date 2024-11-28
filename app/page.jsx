@@ -1,29 +1,80 @@
-import { chapterJsonFormat } from "@/data/chapterJson";
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+"use client";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="card bg-base-300 shadow-xl">
-        <div className="card-body">
-          <h3 className="card-title">Highlighting and Bookmarking</h3>
+  const [bible, setBible] = useState([]);
+  const url = `https://api.scripture.api.bible/v1/bibles?language=eng&include-full-details=false`;
 
-          {chapterJsonFormat?.map((chapter, index) => (
-            <div key={chapter?.id} className="mb-4">
-              <h4 className="mb-2 text-orange-500 font-bold text-xl">{chapter?.reference}</h4>
-              {chapter?.content?.map((verse, index) => (
-                <div key={index}>
-                  <span className="mr-2">{verse?.items[0]?.attrs?.number}</span>
-                  <span>
-                    {verse?.items[1]?.text} {verse?.items[2]?.items[0]?.text}{" "}
-                    {verse?.items[3]?.text} {verse?.items[4]?.items[0]?.text}{" "}
-                    {verse?.items[5]?.text} {verse?.items[6]?.items[0]?.text}
-                    {verse?.items[7]?.text}
-                  </span>
-                </div>
+  const fetchBible = async () => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "api-key": "ec154d957ebe133d3aa9840c7d951dc8",
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      setBible(data);
+    } catch (error) {
+      console.error("Error fetching Bibles:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBible();
+  }, []);
+
+  if (!bible) return <div className="text-center mt-8">Loading...</div>;
+
+  return (
+    <div className="min-h-screen py-8 px-4 sm:px-8 bg-gray-50">
+      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-md p-6">
+        <h2 className="text-2xl font-semibold text-black mb-4">
+          Select Bible
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-200">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="text-left px-4 py-2 border-b border-gray-200">
+                  Abbr
+                </th>
+                <th className="text-left px-4 py-2 border-b border-gray-200">
+                  Name
+                </th>
+                <th className="text-left px-4 py-2 border-b border-gray-200">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {bible?.data?.map((bible) => (
+                <tr
+                  key={bible?.id}
+                  className="hover:bg-gray-50 transition duration-150 text-black"
+                >
+                  <td className="px-4 py-2 border-b border-gray-200">
+                    {bible?.abbreviationLocal}
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-200">
+                    {bible?.name}
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-200">
+                    <Link
+                      href={`/${bible?.id}`}
+                      className="text-blue-600 hover:text-blue-800 transition duration-150 underline"
+                    >
+                      Select
+                    </Link>
+                  </td>
+                </tr>
               ))}
-            </div>
-          ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
