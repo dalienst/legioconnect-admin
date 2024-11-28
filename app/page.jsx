@@ -33,6 +33,7 @@ export default function Home() {
     return <div>Loading...</div>;
   }
 
+  // Function to render React elements for display
   const renderContent = (items) => {
     return items.map((item, index) => {
       switch (item.type) {
@@ -57,6 +58,26 @@ export default function Home() {
     });
   };
 
+  // Function to generate plain text from the content items
+  const renderContentAsText = (items) => {
+    return items
+      .map((item) => {
+        switch (item.type) {
+          case "tag":
+            if (item.name === "verse") {
+              return `${item.attrs.number} `; // Include verse number
+            }
+            break;
+          case "text":
+            return item.text; // Include text content
+          default:
+            return null;
+        }
+      })
+      .filter(Boolean) // Remove null or undefined values
+      .join(""); // Combine into a single string
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="card bg-base-300 shadow-xl">
@@ -73,10 +94,13 @@ export default function Home() {
                 <button
                   className={para.attrs?.style || "paragraph"}
                   onClick={() => {
-                    console.log(para.items && renderContent(para.items));
+                    const plainText =
+                      para.items && renderContentAsText(para.items);
+                    console.log(plainText); // Log the plain text of the verse/paragraph
                   }}
                 >
-                  {para.items && renderContent(para.items)}
+                  {para.items && renderContent(para.items)}{" "}
+                  {/* Render React elements */}
                 </button>
               </div>
             ))}
