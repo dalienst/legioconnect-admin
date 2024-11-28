@@ -1,40 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import "./globals.css";
-
-// Function to render content items as plain text
-const renderContentAsText = (items) => {
-  return items
-    .map((item) => {
-      switch (item.type) {
-        case "tag":
-          if (item.name === "verse") {
-            return `${item.attrs.number} `;
-          } else if (item.name === "char") {
-            return item.items && renderContentAsText(item.items);
-          }
-          break;
-        case "text":
-          return item.text;
-        default:
-          return null;
-      }
-    })
-    .filter(Boolean)
-    .join("");
-};
 
 export default function Home() {
-  const [chapterData, setChapterData] = useState(null);
-  const [separatedVerses, setSeparatedVerses] = useState([]);
-  const [highlights, setHighlights] = useState([]);
-  const liveChapterUrl =
-    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-02/chapters/NUM.2?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
+  const [bible, setBible] = useState([]);
+  const url = `https://api.scripture.api.bible/v1/bibles?language=eng&include-full-details=false`;
 
-  const fetchChapter = async () => {
+  const fetchBible = async () => {
     try {
-      const response = await fetch(liveChapterUrl, {
+      const response = await fetch(url, {
         method: "GET",
         headers: {
           "api-key": "ec154d957ebe133d3aa9840c7d951dc8",
@@ -43,122 +18,49 @@ export default function Home() {
       });
 
       const data = await response.json();
-      const chapterData = data?.data;
-      setChapterData(chapterData);
-
-      // Extract and separate verses after data is fetched
-      if (chapterData?.content) {
-        const fullText = chapterData.content
-          .map((para) => para.items && renderContentAsText(para.items))
-          .join(" ");
-        const separatedVerses = separateVerses(fullText);
-        setSeparatedVerses(separatedVerses);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+      setBible(data);
+    } catch (error) {}
   };
 
   useEffect(() => {
-    fetchChapter();
+    fetchBible();
   }, []);
 
-  // Function to separate the text based on verse numbers
-  const separateVerses = (text) => {
-    const verseRegex = /(\d+)\s+([^\d]+)/g;
-    let verses = [];
-    let match;
+  console.log(bible);
 
-    while ((match = verseRegex.exec(text)) !== null) {
-      const verseNumber = match[1];
-      const verseText = match[2].trim();
-
-      if (verses[verseNumber]) {
-        verses[verseNumber] += ` ${verseText}`;
-      } else {
-        verses[verseNumber] = verseText;
-      }
-    }
-
-    return Object.entries(verses).map(([verseNumber, text]) => ({
-      verseNumber: parseInt(verseNumber, 10),
-      text,
-    }));
-  };
-
-  const toggleHighlight = (verse) => {
-    const isHighlighted = highlights.some(
-      (h) => h.verseNumber === verse.verseNumber
-    );
-
-    let updatedHighlights;
-    if (isHighlighted) {
-      // Remove highlight if already highlighted
-      updatedHighlights = highlights.filter(
-        (h) => h.verseNumber !== verse.verseNumber
-      );
-    } else {
-      // Add highlight if not already highlighted
-      updatedHighlights = [...highlights, verse];
-    }
-
-    setHighlights(updatedHighlights);
-
-    // Store updated highlights in localStorage
-    localStorage.setItem("highlights", JSON.stringify(updatedHighlights));
-  };
-
-  if (!chapterData) {
-    return <div>Loading...</div>;
-  }
+  if (!bible) return <div>Loading...</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="card bg-base-300 shadow-xl">
+    <div className="min-h-screen py-8 px-8">
+      <div className="card bg-base-300">
         <div className="card-body">
-          <h3 className="card-title">Highlighting and Bookmarking</h3>
-
-          <h4 className="mb-2 text-orange-500 font-bold text-xl">
-            {chapterData?.reference}
-          </h4>
-
-          <div className="content">
-            {separatedVerses.map((verse, index) => (
-              <div
-                key={index}
-                className={`mb-4 cursor-pointer ${
-                  highlights.some((h) => h.verseNumber === verse.verseNumber)
-                    ? "bg-yellow-200"
-                    : ""
-                }`}
-                onClick={() => toggleHighlight(verse)}
-              >
-                <div className="verse-item">
-                  <span
-                    className={`verse-number font-bold ${
-                      highlights.some(
-                        (h) => h.verseNumber === verse.verseNumber
-                      )
-                        ? "text-yellow-700"
-                        : "text-red-600"
-                    }`}
-                  >
-                    {verse?.verseNumber}:
-                  </span>
-                  <span
-                    className={`verse-text ml-2 ${
-                      highlights.some(
-                        (h) => h.verseNumber === verse.verseNumber
-                      )
-                        ? "text-yellow-800"
-                        : ""
-                    }`}
-                  >
-                    {verse?.text}
-                  </span>
-                </div>
-              </div>
-            ))}
+          <h2 className="card-title">Select Bible</h2>
+          <div className="overflow-x-auto">
+            <table className="table">
+              <thead>
+                <tr className="text-black">
+                  <th>Abbr</th>
+                  <th>Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bible?.data?.map((bible) => (
+                  <tr key={bible?.id}>
+                    <td>{bible?.abbreviationLocal}</td>
+                    <td>{bible?.name}</td>
+                    <td>
+                      <Link
+                        href={`/${bible?.id}`}
+                        className="btn btn-primary btn-sm btn-outline"
+                      >
+                        Select
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
