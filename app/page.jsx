@@ -1,11 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
 import "./globals.css";
 
+// Function to render content items as plain text
+const renderContentAsText = (items) => {
+  return items
+    .map((item) => {
+      switch (item.type) {
+        case "tag":
+          if (item.name === "verse") {
+            return `${item.attrs.number} `;
+          } else if (item.name === "char") {
+            return item.items && renderContentAsText(item.items);
+          }
+          break;
+        case "text":
+          return item.text;
+        default:
+          return null;
+      }
+    })
+    .filter(Boolean)
+    .join("");
+};
+
 export default function Home() {
   const [chapterData, setChapterData] = useState(null);
+  const [separatedVerses, setSeparatedVerses] = useState([]);
   const liveChapterUrl =
-    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/chapters/LUK.1?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
+    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/chapters/NUM.2?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
 
   const fetchChapter = async () => {
     try {
@@ -20,6 +44,15 @@ export default function Home() {
       const data = await response.json();
       const chapterData = data?.data;
       setChapterData(chapterData);
+
+      // Extract and separate verses after data is fetched
+      if (chapterData?.content) {
+        const fullText = chapterData.content
+          .map((para) => para.items && renderContentAsText(para.items))
+          .join(" ");
+        const separatedVerses = separateVerses(fullText);
+        setSeparatedVerses(separatedVerses);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -28,44 +61,6 @@ export default function Home() {
   useEffect(() => {
     fetchChapter();
   }, []);
-
-  if (!chapterData) {
-    return <div>Loading...</div>;
-  }
-
-  // Function to render React elements for display
-  const renderContent = (items) => {
-    return items.map((item, index) => {
-      switch (item.type) {
-        case "tag":
-          if (item.name === "verse") {
-            return (
-              <span key={index} className="verse text-red-600 mr-1">
-                <sup>{item.attrs.number}</sup>
-              </span>
-            );
-          } else if (item.name === "char") {
-            return (
-              <span
-                key={index}
-                className={`char ${item.attrs.style || "default-style"}`}
-              >
-                {item.items && renderContent(item.items)}
-              </span>
-            );
-          }
-          break;
-        case "text":
-          return (
-            <span key={index} className={item.attrs?.verseId ? "verse" : ""}>
-              {item.text}
-            </span>
-          );
-        default:
-          return null;
-      }
-    });
-  };
 
   // Function to separate the text based on verse numbers
   const separateVerses = (text) => {
@@ -90,28 +85,6 @@ export default function Home() {
     }));
   };
 
-  // Function to render content items as plain text
-  const renderContentAsText = (items) => {
-    return items
-      .map((item) => {
-        switch (item.type) {
-          case "tag":
-            if (item.name === "verse") {
-              return `${item.attrs.number} `;
-            } else if (item.name === "char") {
-              return item.items && renderContentAsText(item.items);
-            }
-            break;
-          case "text":
-            return item.text;
-          default:
-            return null;
-        }
-      })
-      .filter(Boolean)
-      .join("");
-  };
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="card bg-base-300 shadow-xl">
@@ -119,23 +92,18 @@ export default function Home() {
           <h3 className="card-title">Highlighting and Bookmarking</h3>
 
           <h4 className="mb-2 text-orange-500 font-bold text-xl">
-            {chapterData.reference}
+            {chapterData?.reference}
           </h4>
 
           <div className="content">
-            {chapterData.content?.map((para, index) => (
-              <div key={index} className="mb-4">
-                <button
-                  className={para.attrs?.style || "paragraph"}
-                  onClick={() => {
-                    const plainText =
-                      para.items && renderContentAsText(para.items);
-                    const separatedVerses = separateVerses(plainText);
-                    console.log(separatedVerses); // Log the separated verses
-                  }}
-                >
-                  {para.items && renderContent(para.items)}
-                </button>
+            {separatedVerses.map((verse, index) => (
+              <div key={index} className="mb-4 cursor-pointer" onClick={() => console.log(verse)}>
+                <div className="verse-item">
+                  <span className="verse-number text-red-600 font-bold">
+                    {verse?.verseNumber}:
+                  </span>
+                  <span className="verse-text ml-2">{verse?.text}</span>
+                </div>
               </div>
             ))}
           </div>
