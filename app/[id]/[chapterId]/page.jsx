@@ -30,6 +30,7 @@ export default function ChapterDetail() {
   const [chapterData, setChapterData] = useState(null);
   const [separatedVerses, setSeparatedVerses] = useState([]);
   const [highlights, setHighlights] = useState([]);
+
   const liveChapterUrl = `https://api.scripture.api.bible/v1/bibles/${id}/chapters/${chapterId}?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false`;
 
   const fetchChapter = async () => {
@@ -109,57 +110,46 @@ export default function ChapterDetail() {
   };
 
   if (!chapterData) {
-    return <div>Loading...</div>;
+    return <div className="text-center py-10">Loading...</div>;
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="px-10">
-        <div className="card bg-base-300 shadow-xl">
-          <div className="card-body">
-            <h3 className="card-title text-orange-500">
-              {chapterData?.reference}
-            </h3>
-
-            <div className="content">
-              {separatedVerses.map((verse, index) => (
-                <div
-                  key={index}
-                  className={`mb-4 cursor-pointer ${
-                    highlights.some((h) => h.verseNumber === verse.verseNumber)
-                      ? "bg-yellow-200"
-                      : ""
-                  }`}
-                  onClick={() => toggleHighlight(verse)}
-                >
-                  <div className="verse-item">
-                    <span
-                      className={`verse-number font-bold ${
-                        highlights.some(
-                          (h) => h.verseNumber === verse.verseNumber
-                        )
-                          ? "text-yellow-700"
-                          : "text-red-600"
-                      }`}
-                    >
-                      {verse?.verseNumber}:
-                    </span>
-                    <span
-                      className={`verse-text ml-2 ${
-                        highlights.some(
-                          (h) => h.verseNumber === verse.verseNumber
-                        )
-                          ? "text-yellow-800"
-                          : ""
-                      }`}
-                    >
-                      {verse?.text}
-                    </span>
-                  </div>
-                </div>
-              ))}
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-gray-700">
+          {chapterData?.reference}
+        </h2>
+        <div className="bg-white shadow rounded-lg p-6">
+          {separatedVerses.map((verse, index) => (
+            <div
+              key={index}
+              className={`mb-4 p-2 border rounded-md cursor-pointer transition-all duration-200 ${
+                highlights.some((h) => h.verseNumber === verse.verseNumber)
+                  ? "bg-yellow-100 border-yellow-400"
+                  : "border-gray-300 hover:bg-gray-100"
+              }`}
+              onClick={() => toggleHighlight(verse)}
+            >
+              <span
+                className={`font-bold mr-2 ${
+                  highlights.some((h) => h.verseNumber === verse.verseNumber)
+                    ? "text-yellow-700"
+                    : "text-gray-700"
+                }`}
+              >
+                {verse?.verseNumber}:
+              </span>
+              <span
+                className={`${
+                  highlights.some((h) => h.verseNumber === verse.verseNumber)
+                    ? "text-yellow-800"
+                    : "text-gray-600"
+                }`}
+              >
+                {verse?.text}
+              </span>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
