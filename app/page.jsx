@@ -29,7 +29,7 @@ export default function Home() {
   const [chapterData, setChapterData] = useState(null);
   const [separatedVerses, setSeparatedVerses] = useState([]);
   const liveChapterUrl =
-    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/chapters/NUM.2?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
+    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-02/chapters/NUM.2?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
 
   const fetchChapter = async () => {
     try {
