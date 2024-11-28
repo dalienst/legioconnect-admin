@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 // Function to render content items as plain text
@@ -24,7 +25,8 @@ const renderContentAsText = (items) => {
     .join("");
 };
 
-export default function ChapterDetail({ params: { id, chapterId } }) {
+export default function ChapterDetail() {
+  const { id, chapterId } = useParams();
   const [chapterData, setChapterData] = useState(null);
   const [separatedVerses, setSeparatedVerses] = useState([]);
   const [highlights, setHighlights] = useState([]);
@@ -118,7 +120,6 @@ export default function ChapterDetail({ params: { id, chapterId } }) {
             <h3 className="card-title text-orange-500">
               {chapterData?.reference}
             </h3>
-
 
             <div className="content">
               {separatedVerses.map((verse, index) => (
