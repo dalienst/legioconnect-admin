@@ -67,26 +67,49 @@ export default function Home() {
     });
   };
 
-  // Function to generate plain text from the content items
+  // Function to separate the text based on verse numbers
+  const separateVerses = (text) => {
+    const verseRegex = /(\d+)\s+([^\d]+)/g;
+    let verses = [];
+    let match;
+
+    while ((match = verseRegex.exec(text)) !== null) {
+      const verseNumber = match[1];
+      const verseText = match[2].trim();
+
+      if (verses[verseNumber]) {
+        verses[verseNumber] += ` ${verseText}`;
+      } else {
+        verses[verseNumber] = verseText;
+      }
+    }
+
+    return Object.entries(verses).map(([verseNumber, text]) => ({
+      verseNumber: parseInt(verseNumber, 10),
+      text,
+    }));
+  };
+
+  // Function to render content items as plain text
   const renderContentAsText = (items) => {
     return items
       .map((item) => {
         switch (item.type) {
           case "tag":
             if (item.name === "verse") {
-              return `${item.attrs.number} `; // Include verse number
+              return `${item.attrs.number} `;
             } else if (item.name === "char") {
               return item.items && renderContentAsText(item.items);
             }
             break;
           case "text":
-            return item.text; // Include text content
+            return item.text;
           default:
             return null;
         }
       })
-      .filter(Boolean) // Remove null or undefined values
-      .join(""); // Combine into a single string
+      .filter(Boolean)
+      .join("");
   };
 
   return (
@@ -107,11 +130,11 @@ export default function Home() {
                   onClick={() => {
                     const plainText =
                       para.items && renderContentAsText(para.items);
-                    console.log(plainText); // Log the plain text of the verse/paragraph
+                    const separatedVerses = separateVerses(plainText);
+                    console.log(separatedVerses); // Log the separated verses
                   }}
                 >
-                  {para.items && renderContent(para.items)}{" "}
-                  {/* Render React elements */}
+                  {para.items && renderContent(para.items)}
                 </button>
               </div>
             ))}
