@@ -5,3 +5,50 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bible-chapter {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.meta {
+  font-style: italic;
+  color: gray;
+}
+
+.content {
+  margin-bottom: 1.5rem;
+}
+
+.verse {
+  font-weight: bold;
+}
+
+.char.add {
+  font-style: italic;
+}
+
+.text {
+  display: inline;
+}
+
+.navigation a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: blue;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: gray;
+}

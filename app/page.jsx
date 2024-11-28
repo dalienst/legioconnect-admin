@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import "./globals.css";
 
 export default function Home() {
   const [chapterData, setChapterData] = useState(null);
-  const [bookmarks, setBookmarks] = useState([]);
   const liveChapterUrl =
-    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/chapters/PSA.3?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
+    "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/chapters/LUK.1?content-type=json&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false";
 
   const fetchChapter = async () => {
     try {
@@ -33,30 +33,26 @@ export default function Home() {
     return <div>Loading...</div>;
   }
 
-  const { content, reference } = chapterData;
-
-  // Function to filter valid verses
-  const getValidVerseText = (verse) => {
-    if (!verse || !verse.items) return null;
-
-    // Concatenate all text from the verse's items
-    return verse.items
-      .filter((item) => item?.text || item?.items?.[0]?.text) // Ensure the item has text
-      .map((item) => item?.text || item?.items?.[0]?.text) // Get the text
-      .join(" "); // Join the text together
-  };
-
-  // bookmarks
-  const toggleBookmark = (verse) => {
-    const verseId = verse?.items[0]?.attrs?.sid;
-    if (!verseId) return;
-
-    setBookmarks((prevBookmarks) => {
-      const isBookmarked = prevBookmarks.some((b) => b?.id === verseId);
-      if (isBookmarked) {
-        return prevBookmarks.filter((b) => b?.id !== verseId);
-      } else {
-        return [...prevBookmarks, { id: verseId, verse }];
+  const renderContent = (items) => {
+    return items.map((item, index) => {
+      switch (item.type) {
+        case "tag":
+          if (item.name === "verse") {
+            return (
+              <span key={index} className="verse text-red-600 mr-1">
+                <sup>{item.attrs.number}</sup>
+              </span>
+            );
+          }
+          break;
+        case "text":
+          return (
+            <span key={index} className={item.attrs?.verseId ? "verse" : ""}>
+              {item.text}
+            </span>
+          );
+        default:
+          return null;
       }
     });
   };
@@ -68,34 +64,23 @@ export default function Home() {
           <h3 className="card-title">Highlighting and Bookmarking</h3>
 
           <h4 className="mb-2 text-orange-500 font-bold text-xl">
-            {reference}
+            {chapterData.reference}
           </h4>
 
-          {content?.map((verse, index) => {
-            const verseText = getValidVerseText(verse);
-
-            if (!verseText) return null;
-
-            const verseId = verse?.items[0]?.attrs?.sid;
-
-            return (
+          <div className="content">
+            {chapterData.content?.map((para, index) => (
               <div key={index} className="mb-4">
-                <span>{verseText}</span>
                 <button
-                  onClick={() => toggleBookmark(verse)}
-                  className={`ml-2 px-2 py-1 text-sm rounded ${
-                    bookmarks.some((b) => b?.id === verseId)
-                      ? "bg-red-500 text-white"
-                      : "bg-gray-300 text-black"
-                  }`}
+                  className={para.attrs?.style || "paragraph"}
+                  onClick={() => {
+                    console.log(para.items && renderContent(para.items));
+                  }}
                 >
-                  {bookmarks.some((b) => b?.id === verseId)
-                    ? "Remove Bookmark"
-                    : "Bookmark"}
+                  {para.items && renderContent(para.items)}
                 </button>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </div>
