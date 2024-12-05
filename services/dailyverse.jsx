@@ -3,9 +3,10 @@ import { apiMultipartActions } from "@/tools/api";
 export const getDailyVerse = async (axios) => {
   try {
     const response = await apiMultipartActions?.get(`/api/dailyverse/`, axios);
-
-    return response?.data;
-  } catch (error) {}
+    return response?.data?.results || [];
+  } catch (error) {
+    return [];
+  }
 };
 
 export const createDailyVerse = async (formData, axios) => {
@@ -33,6 +34,8 @@ export const getDailyVerseDetail = async (slug, axios) => {
       axios
     );
 
-    return response?.data;
-  } catch (error) {}
+    return response?.data?.results || [];
+  } catch (error) {
+    return [];
+  }
 };
