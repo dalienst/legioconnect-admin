@@ -59,3 +59,20 @@ body {
     color: var(--milk);
   }
 }
+
+.hero-text {
+  color: #4b1719;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.hero-btn {
+  background-color: #4b1719;
+  color: var(--milk);
+
+  &:hover {
+
+    border: #4b1719 1px solid;
+    color: var(--primary);
+  }
+}
