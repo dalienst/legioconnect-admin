@@ -43,3 +43,9 @@ body {
 .nav-active {
   color: var(--brownish);
 }
+
+.dash-text {
+  color: #4b1719;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
