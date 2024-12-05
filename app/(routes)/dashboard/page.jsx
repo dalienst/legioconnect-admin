@@ -1,7 +1,9 @@
 "use client";
+import LoadingSpinner from "@/components/general/LoadingSpinner";
 import AddDailyVerse from "@/forms/AddDailyVerse";
 import useFetchAccount from "@/hooks/accounts/useFetchAccount";
 import { useFetchDailyVerses } from "@/hooks/dailyverse/dailyverse";
+import DailyVerseTable from "@/tables/DailyVerseTable";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
@@ -14,10 +16,12 @@ function Dashboard() {
   const {
     isLoading: isLoadingDailyVerses,
     data: dailyverses,
+    error: errorDailyVerses,
     refetch: refetchDailyVerse,
   } = useFetchDailyVerses();
 
-  console.log(dailyverses);
+
+  if (isLoadingAccount || isLoadingDailyVerses) return <LoadingSpinner />;
 
   return (
     <div className="container-fluid">
@@ -57,6 +61,18 @@ function Dashboard() {
               </div>
             </Modal>
           </div>
+        </div>
+
+        <div className="card-body">
+          {isLoadingDailyVerses ? (
+            <LoadingSpinner />
+          ) : dailyverses && dailyverses.length > 0 ? (
+            <>
+              <DailyVerseTable dailyverses={dailyverses} />
+            </>
+          ) : (
+            <p className="lead">No daily verses found</p>
+          )}
         </div>
       </section>
     </div>

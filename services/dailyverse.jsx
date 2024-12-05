@@ -3,11 +3,13 @@ import { apiMultipartActions } from "@/tools/api";
 export const getDailyVerse = async (axios) => {
   try {
     const response = await apiMultipartActions?.get(`/api/dailyverse/`, axios);
+    console.log("Fetched Daily Verses:", response?.data?.results);
     return response?.data?.results || [];
   } catch (error) {
-    return [];
+    throw new Error("Failed to fetch daily verses");
   }
 };
+
 
 export const createDailyVerse = async (formData, axios) => {
   try {
