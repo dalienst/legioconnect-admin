@@ -1,11 +1,10 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = {
+export default NextAuth({
   providers: [
     CredentialsProvider({
       name: "credentials",
-
       credentials: {
         email: {
           label: "Email",
@@ -25,13 +24,13 @@ export const authOptions = {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON?.stringify({ email, password }),
+            body: JSON.stringify({ email, password }),
           }
         );
 
-        const user = await response?.json();
+        const user = await response.json();
 
-        if (response?.ok && user) {
+        if (response.ok && user) {
           return user;
         } else {
           return null;
@@ -54,6 +53,4 @@ export const authOptions = {
   pages: {
     signIn: "/auth/login",
   },
-};
-
-export default NextAuth(authOptions);
+});
