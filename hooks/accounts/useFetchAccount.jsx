@@ -10,7 +10,7 @@ export default function useFetchAccount() {
   const axios = useAxiosAuth();
 
   return useQuery({
-    queryKey: ["accounts", userId],
+    queryKey: ["account", userId],
     queryFn: () => getUser(userId, axios),
   });
 }
