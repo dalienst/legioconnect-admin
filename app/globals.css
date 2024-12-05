@@ -16,13 +16,17 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: var(--milk);
 }
 
 .auth-screen {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+.card {
+  background: #fff;
 }

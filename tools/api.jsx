@@ -21,5 +21,5 @@ export const apiMultipartActions = axios?.create({
 });
 
 export const signUpStaff = async (values) => {
-  await urlActions?.post("/api/accounts/signup/", values);
+  await apiActions?.post("/api/accounts/signup/staff/", values);
 };
