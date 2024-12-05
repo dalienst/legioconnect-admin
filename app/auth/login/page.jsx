@@ -25,7 +25,6 @@ export default function LoginPage() {
     if (response?.error) {
       setLoading(false);
       toast.error("Invalid email or password");
-      console.log(response.error);
     } else {
       toast.success("Login successful! Redirecting...");
       if (session?.user?.is_staff === true) {
