@@ -23,6 +23,7 @@ export default function LoginPage() {
     if (response?.error) {
       setLoading(false);
       toast?.error("Invalid email or password");
+      console.log(error)
     } else {
       toast?.success("Login successful! Redirecting...");
       setLoading(false);
@@ -32,7 +33,7 @@ export default function LoginPage() {
   return (
     <div className="container auth-screen">
       <div>
-        <form className="w-100 p-3 shadow rounded bg-white">
+        <form className="w-100 p-3 p-md-5 shadow rounded bg-white">
           <h3 className="text-start">Glad To See You Again</h3>
           <p className="lead text-start mt-2 fs-6">
             Enter your credentials to access account
