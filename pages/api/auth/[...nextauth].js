@@ -1,10 +1,10 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "Sign In with your credentials",
+      name: "credentials",
 
       credentials: {
         email: {
