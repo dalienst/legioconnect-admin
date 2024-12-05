@@ -30,3 +30,16 @@ body {
 .card {
   background: #fff;
 }
+
+.navbar-style {
+  background-color: #4b1719;
+  color: #fff;
+}
+
+.nav-text {
+  color: var(--cardGrey);
+}
+
+.nav-active {
+  color: var(--brownish);
+}

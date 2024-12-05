@@ -11,20 +11,20 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="navbar navbar-expand-md bg-light mb-3 shadow">
+    <nav className="navbar navbar-expand-md navbar-style mb-3 shadow">
       <div className="container-fluid">
-        <Link href="/dashboard" className="navbar-brand">
-          {account?.first_name}
+        <Link href="/dashboard" className="navbar-brand nav-text fw-bold">
+          LegioConnect
         </Link>
 
         <button
-          className="navbar-toggler border-0  text-dark"
+          className="navbar-toggler border-0  "
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapsibleNavbar"
           aria-controls="collapsibleNavbar"
         >
-          <i className="bi bi-list text-dark"></i>
+          <i className="bi bi-list nav-text"></i>
         </button>
 
         <div
@@ -37,8 +37,8 @@ export default function Navbar() {
                 href="/dashboard"
                 className={`${
                   pathname === "/dashboard"
-                    ? "nav-link active text-success"
-                    : "nav-link text-dark"
+                    ? "nav-link nav-active"
+                    : "nav-link  nav-text"
                 }`}
               >
                 Dashboard
@@ -50,8 +50,8 @@ export default function Navbar() {
                 href="/settings"
                 className={`${
                   pathname === "/settings"
-                    ? "nav-link active text-success"
-                    : "nav-link text-dark"
+                    ? "nav-link nav-active"
+                    : "nav-link nav-text"
                 }`}
               >
                 Settings
