@@ -27,16 +27,20 @@ function Dashboard() {
       </section>
 
       <section className="card">
-        <div className="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center card-header bg-white">
+        <div className="mb-3 d-flex flex-row flex-md-row justify-content-between align-items-start align-items-md-center card-header bg-white">
           <h5>Daily Verses</h5>
 
           <div>
-            <button className="btn btn-connect" onClick={handleShow}>
+            <button className="btn btn-connect btn-sm" onClick={handleShow}>
               Add
             </button>
 
             {/* Modal for creating daily verse */}
-            <Modal show={show} onHide={handleClose}>
+            <Modal
+              show={show}
+              onHide={handleClose}
+              dialogClassName="modal-dialog modal-dialog-centered"
+            >
               <div className="modal-header">
                 <h5 className="modal-title">Create Daily Verse</h5>
                 <button
@@ -46,12 +50,10 @@ function Dashboard() {
                 ></button>
               </div>
               <div className="modal-body">
-                {account && (
-                  <AddDailyVerse
-                    refetch={refetchDailyVerse}
-                    handleCloseModal={handleClose}
-                  />
-                )}
+                <AddDailyVerse
+                  refetch={refetchDailyVerse}
+                  handleCloseModal={handleClose}
+                />
               </div>
             </Modal>
           </div>
