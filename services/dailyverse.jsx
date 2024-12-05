@@ -11,8 +11,15 @@ export const getDailyVerse = async (axios) => {
 
 export const createDailyVerse = async (formData, axios) => {
   try {
-    await apiMultipartActions?.post(`/api/dailyverse/`, formData, axios);
-  } catch (error) {}
+    const response = await apiMultipartActions?.post(
+      `/api/dailyverse/`,
+      formData,
+      axios
+    );
+    return response?.data; // Return the response for further handling
+  } catch (error) {
+    throw error; // Re-throw the error to be caught in the calling code
+  }
 };
 
 export const updateDailyVerse = async (formData, axios) => {

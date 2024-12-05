@@ -2,7 +2,7 @@
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createDailyVerse } from "@/services/dailyverse";
 import { Field, Form, Formik } from "formik";
-import React, { useState, version } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 function AddDailyVerse({ refetch, handleCloseModal }) {
@@ -30,12 +30,15 @@ function AddDailyVerse({ refetch, handleCloseModal }) {
             formData.append("active_date", values.active_date);
 
             await createDailyVerse(formData, axios);
-            toast?.success("Daily Verse created successfully!");
+            toast.success("Daily Verse created successfully!");
             refetch();
             handleCloseModal();
-            setLoading(false);
           } catch (error) {
-            console.log(error);
+            if (error?.response?.data?.active_date) {
+              toast.error(error?.response?.data?.active_date[0]);
+            } else {
+              toast.error("Something went wrong!");
+            }
           } finally {
             setLoading(false);
           }
@@ -73,6 +76,7 @@ function AddDailyVerse({ refetch, handleCloseModal }) {
                 Verse Text
               </label>
               <Field
+                as="textarea"
                 className="form-control"
                 type="text"
                 id="verse_text"
