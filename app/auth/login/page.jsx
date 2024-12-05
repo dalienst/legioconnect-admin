@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -20,14 +20,18 @@ export default function LoginPage() {
       password: password,
     });
 
+    const session = await getSession();
+
     if (response?.error) {
       setLoading(false);
       toast.error("Invalid email or password");
-      console.log(response.error);
     } else {
       toast.success("Login successful! Redirecting...");
-      setLoading(false);
-      router.push("/dashboard");
+      if (session?.user?.is_staff === true) {
+        router.push("/dashboard");
+      } else {
+        router.push("/");
+      }
     }
   };
 

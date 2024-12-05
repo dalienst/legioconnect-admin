@@ -1,7 +1,8 @@
-import React from 'react'
+"use client";
+import useFetchAccount from "@/hooks/accounts/useFetchAccount";
+import React from "react";
 
 export default function Settings() {
-  return (
-    <div>Settings</div>
-  )
+  const { isLoading: isLoadingAccount, data: account } = useFetchAccount();
+  return <div>Settings</div>;
 }
