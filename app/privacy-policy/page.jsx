@@ -1,14 +1,12 @@
-"use client"
+"use client";
 import Link from "next/link";
 import React from "react";
 
 export default function Privacy() {
   return (
     <div className="container py-5 px-4">
-      <h1 className="mb-4 text-center" style={{ color: "#4b1719" }}>
-        Privacy Policy for LegioConnect
-      </h1>
-      <p className="mb-3" style={{ color: "#4b1719" }}>
+      <h1 className="mb-4 text-center">Privacy Policy for LegioConnect</h1>
+      <p className="mb-3 text-center text-muted">
         Effective Date: 20th December 2024
       </p>
       <p className="mb-4">
@@ -21,9 +19,7 @@ export default function Privacy() {
       </p>
 
       {/* Section 1 */}
-      <h2 className="mb-3" style={{ color: "#4b1719" }}>
-        Information We Collect
-      </h2>
+      <h2 className="mb-3">Information We Collect</h2>
 
       <h5 className="mt-4">1. Information You Provide to Us</h5>
       <ul className="ms-3">
@@ -63,9 +59,7 @@ export default function Privacy() {
       </p>
 
       {/* Section 2 */}
-      <h2 className="mb-3 mt-4" style={{ color: "#4b1719" }}>
-        How We Use Your Information
-      </h2>
+      <h2 className="mb-3 mt-4">How We Use Your Information</h2>
 
       <p>We use the information we collect to:</p>
       <ul className="ms-3">
@@ -81,9 +75,7 @@ export default function Privacy() {
       </ul>
 
       {/* Section 3 */}
-      <h2 className="mb-3 mt-4" style={{ color: "#4b1719" }}>
-        Sharing Your Information
-      </h2>
+      <h2 className="mb-3 mt-4">Sharing Your Information</h2>
       <p>We may share your information with:</p>
       <ul className="ms-3">
         <li>
@@ -103,9 +95,7 @@ export default function Privacy() {
       <p>We do not sell your personal information to third parties.</p>
 
       {/* Section 4 */}
-      <h2 className="mb-3 mt-4" style={{ color: "#4b1719" }}>
-        Data Retention
-      </h2>
+      <h2 className="mb-3 mt-4">Data Retention</h2>
       <p>
         We retain your personal information only for as long as is necessary for
         the purposes set out in this Privacy Policy. We will delete or anonymize
@@ -113,9 +103,7 @@ export default function Privacy() {
       </p>
 
       {/* Section 5 */}
-      <h2 className="mb-3 mt-4" style={{ color: "#4b1719" }}>
-        Security of Your Information
-      </h2>
+      <h2 className="mb-3 mt-4">Security of Your Information</h2>
       <p>
         We take reasonable measures to protect your personal information from
         unauthorized access, use, or disclosure. However, no method of
@@ -124,9 +112,7 @@ export default function Privacy() {
       </p>
 
       {/* Section 6 */}
-      <h2 className="mb-3 mt-4" style={{ color: "#4b1719" }}>
-        Your Choices
-      </h2>
+      <h2 className="mb-3 mt-4">Your Choices</h2>
       <ul className="ms-3">
         <li>
           <strong>Account Information:</strong> You can update or delete your
@@ -145,9 +131,7 @@ export default function Privacy() {
       </ul>
 
       {/* Section 7 */}
-      <h2 className="mb-3 mt-4" style={{ color: "#4b1719" }}>
-        Children&apos;s Privacy
-      </h2>
+      <h2 className="mb-3 mt-4">Children&apos;s Privacy</h2>
       <p>
         The App is not intended for children under the age of 13. We do not
         knowingly collect personal information from children under 13. If we
@@ -156,9 +140,7 @@ export default function Privacy() {
       </p>
 
       {/* Section 8 */}
-      <h2 className="mb-3 mt-4" style={{ color: "#4b1719" }}>
-        Changes to Our Privacy Policy
-      </h2>
+      <h2 className="mb-3 mt-4">Changes to Our Privacy Policy</h2>
       <p>
         We may update this Privacy Policy from time to time. We will notify you
         of any changes by posting the new Privacy Policy on this page. We
@@ -167,9 +149,7 @@ export default function Privacy() {
       </p>
 
       {/* Last Section */}
-      <h3 className="mt-5 mb-3" style={{ color: "#4b1719" }}>
-        Contact Us
-      </h3>
+      <h3 className="mt-5 mb-3">Contact Us</h3>
       <p>
         If you have any questions or concerns about this Privacy Policy, please
         contact us at:
