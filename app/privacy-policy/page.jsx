@@ -3,7 +3,7 @@ import React from "react";
 export default function Privacy() {
   return (
     <div className="container py-5">
-      <h1 className="mb-4" style={{ color: "#4b1719" }}>
+      <h1 className="mb-4 text-center" style={{ color: "#4b1719" }}>
         Privacy Policy for LegioConnect
       </h1>
       <p className="mb-3" style={{ color: "#4b1719" }}>
