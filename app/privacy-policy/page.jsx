@@ -1,8 +1,10 @@
+"use client"
+import Link from "next/link";
 import React from "react";
 
 export default function Privacy() {
   return (
-    <div className="container py-5">
+    <div className="container py-5 px-4">
       <h1 className="mb-4 text-center" style={{ color: "#4b1719" }}>
         Privacy Policy for LegioConnect
       </h1>
@@ -10,11 +12,12 @@ export default function Privacy() {
         Effective Date: 20th December 2024
       </p>
       <p className="mb-4">
-        LegioConnect (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your
-        privacy. This Privacy Policy explains how we collect, use, disclose, and
-        safeguard your information when you use our mobile application (the
-        &quot;App&quot;). Please read this Privacy Policy carefully. If you do not agree
-        with the terms of this Privacy Policy, please do not use the App.
+        LegioConnect (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is
+        committed to protecting your privacy. This Privacy Policy explains how
+        we collect, use, disclose, and safeguard your information when you use
+        our mobile application (the &quot;App&quot;). Please read this Privacy
+        Policy carefully. If you do not agree with the terms of this Privacy
+        Policy, please do not use the App.
       </p>
 
       {/* Section 1 */}
@@ -128,7 +131,8 @@ export default function Privacy() {
         <li>
           <strong>Account Information:</strong> You can update or delete your
           account information directly within the App or by contacting us at
-          info@legioconnect.com.
+          <Link href="mailto:info@legioconnect.com">info@legioconnect.com</Link>
+          .
         </li>
         <li>
           <strong>Notifications:</strong> You can opt out of receiving
@@ -171,9 +175,9 @@ export default function Privacy() {
         contact us at:
       </p>
       <p>
-        <strong>Email:</strong> info@legioconnect.com
+        <strong>Email:</strong>{" "}
+        <Link href="mailto:info@legioconnect.com">info@legioconnect.com</Link>
       </p>
-
     </div>
   );
 }
