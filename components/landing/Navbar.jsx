@@ -4,7 +4,7 @@ import React from "react";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-md landing-navbar mb-3 shadow rounded-5 sticky-top">
+    <nav className="navbar navbar-expand-md landing-navbar mb-3 rounded-5 sticky-top">
       <div className="container-fluid">
         <Link href="/" className="navbar-brand nav-text-color fw-bold">
           LegioConnect
@@ -17,7 +17,7 @@ function Navbar() {
           data-bs-target="#collapsibleNavbar"
           aria-controls="collapsibleNavbar"
         >
-          <i className="bi bi-list nav-text"></i>
+          <i className="bi bi-list nav-text-color"></i>
         </button>
 
         <div
