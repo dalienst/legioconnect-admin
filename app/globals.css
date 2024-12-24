@@ -36,6 +36,15 @@ body {
   color: #fff;
 }
 
+.landing-navbar {
+  border: 1px solid #4b1719;
+  color: #4b1719;
+}
+
+.nav-text-color {
+  color: #4b1719;
+}
+
 .nav-text {
   color: var(--cardGrey);
 }
