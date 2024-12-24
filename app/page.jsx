@@ -20,14 +20,15 @@ export default function LandingPage() {
           </p>
           <div className="text-center">
             <Link
-              href=""
+              href="https://play.google.com/apps/testing/com.dalienst.legioconnect"
+              target="_blank"
               className="d-inline-flex align-items-center gap-2"
               style={{ width: "auto" }}
             >
               <Image
-                src="/getitongoogle.png"
+                src="/preregister.png"
                 alt="playstore"
-                width={100}
+                width={200}
                 height={100}
                 className="img-fluid"
               />
