@@ -4,9 +4,9 @@ import React from "react";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-md landing-navbar mb-3 rounded-5 sticky-top">
+    <nav className="navbar navbar-expand-md navbar-style mb-3 shadow">
       <div className="container-fluid">
-        <Link href="/" className="navbar-brand nav-text-color fw-bold">
+        <Link href="/" className="navbar-brand nav-text fw-bold">
           LegioConnect
         </Link>
 
@@ -17,7 +17,7 @@ function Navbar() {
           data-bs-target="#collapsibleNavbar"
           aria-controls="collapsibleNavbar"
         >
-          <i className="bi bi-list nav-text-color"></i>
+          <i className="bi bi-list nav-text"></i>
         </button>
 
         <div
@@ -28,25 +28,17 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 href="/"
-                className="nav-link nav-text-color fw-bold"
+                className="nav-link nav-text fw-bold"
                 aria-current="page"
               >
                 Home
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link
-                href="/about"
-                className="nav-link nav-text-color fw-bold"
-                aria-current="page"
-              >
-                About
-              </Link>
-            </li> */}
+
             <li className="nav-item">
               <Link
                 href="/privacy-policy"
-                className="nav-link nav-text-color fw-bold"
+                className="nav-link nav-text fw-bold"
                 aria-current="page"
               >
                 Privacy Policy
