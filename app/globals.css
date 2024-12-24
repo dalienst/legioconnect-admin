@@ -91,3 +91,15 @@ body {
     color: var(--primary);
   }
 }
+
+.icon-color {
+  color: #4b1719;
+  font-size: 24px;
+
+}
+
+.feature-title {
+  color: #4b1719;
+  font-weight: 700;
+  font-size: 20px;
+}
