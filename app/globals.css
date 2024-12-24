@@ -9,6 +9,12 @@
   --cream: #fcd5c2;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -34,6 +40,15 @@ body {
 .navbar-style {
   background-color: #4b1719;
   color: #fff;
+}
+
+.landing-navbar {
+  border: 1px solid #4b1719;
+  color: #4b1719;
+}
+
+.nav-text-color {
+  color: #4b1719;
 }
 
 .nav-text {
@@ -75,4 +90,16 @@ body {
     border: #4b1719 1px solid;
     color: var(--primary);
   }
+}
+
+.icon-color {
+  color: #4b1719;
+  font-size: 24px;
+
+}
+
+.feature-title {
+  color: #4b1719;
+  font-weight: 700;
+  font-size: 20px;
 }
