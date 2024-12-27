@@ -7,5 +7,6 @@ export const config = {
     "/users/:path*",
     "/reports/:path*",
     "/deletion-requests/:path*",
+    "/verses/:path*",
   ],
 };

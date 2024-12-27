@@ -6,7 +6,7 @@ import { useFetchAccount, useFetchUsers } from "@/hooks/accounts/actions";
 import { useFetchDailyVerses } from "@/hooks/dailyverse/dailyverse";
 import { useFetchReports } from "@/hooks/reports/actions";
 import DailyVerseTable from "@/tables/DailyVerseTable";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
 function Dashboard() {

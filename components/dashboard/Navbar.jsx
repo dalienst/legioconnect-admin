@@ -58,6 +58,19 @@ export default function Navbar() {
 
             <li className="nav-item">
               <Link
+                href="/verses"
+                className={`${
+                  pathname === "/verses"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
+                }`}
+              >
+                Daily Verse
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
                 href="/reports"
                 className={`${
                   pathname === "/reports"

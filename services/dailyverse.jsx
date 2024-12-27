@@ -9,7 +9,6 @@ export const getDailyVerse = async (axios) => {
   }
 };
 
-
 export const createDailyVerse = async (formData, axios) => {
   try {
     const response = await apiMultipartActions?.post(
@@ -23,27 +22,19 @@ export const createDailyVerse = async (formData, axios) => {
   }
 };
 
-export const updateDailyVerse = async (formData, axios) => {
-  try {
-    await apiMultipartActions?.patch(`/api/dailyverse/`, formData, axios);
-  } catch (error) {}
+export const updateDailyVerse = async (slug, formData, axios) => {
+  await apiMultipartActions?.patch(`/api/dailyverse/${slug}/`, formData, axios);
 };
 
-export const deleteDailyVerse = async (axios) => {
-  try {
-    await apiMultipartActions?.delete(`/api/dailyverse/`, axios);
-  } catch (error) {}
+export const deleteDailyVerse = async (slug, axios) => {
+  await apiMultipartActions?.delete(`/api/dailyverse/${slug}/`, axios);
 };
 
 export const getDailyVerseDetail = async (slug, axios) => {
-  try {
-    const response = await apiMultipartActions?.get(
-      `/api/dailyverse/${slug}/`,
-      axios
-    );
+  const response = await apiMultipartActions?.get(
+    `/api/dailyverse/${slug}/`,
+    axios
+  );
 
-    return response?.data?.results || [];
-  } catch (error) {
-    return [];
-  }
+  return response?.data || {};
 };

@@ -68,6 +68,7 @@ function AddDailyVerse({ refetch, handleCloseModal }) {
                 type="text"
                 id="verse_reference"
                 name="verse_reference"
+                placeholder="Ex: John 3:16"
               />
             </div>
 

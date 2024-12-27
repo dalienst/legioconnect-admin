@@ -83,7 +83,7 @@ export default function Settings() {
                         src="/profile.svg"
                         alt="avatar"
                         width={60}
-                        height={80}
+                        height={60}
                         className="img-fluid rounded-circle"
                       />
                     )}
