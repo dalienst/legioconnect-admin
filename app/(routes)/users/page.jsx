@@ -39,11 +39,8 @@ function UserList() {
       </nav>
 
       <section className="mb-3">
-        <h3 className="dash-text">Users and Accounts</h3>
-        <p className="lead small">
-          Manage all platform users in one place. You can also review and handle
-          account deletion requests here.
-        </p>
+        <h3 className="dash-text">Users</h3>
+        <p className="lead small">Manage all platform users in one place.</p>
       </section>
 
       <section className="mb-3 col-md-3">

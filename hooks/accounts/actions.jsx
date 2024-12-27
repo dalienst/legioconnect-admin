@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   getAllUsers,
   getDeletionRequestDetail,
+  getDeletionRequests,
   getUser,
   getUserDetail,
 } from "@/services/accounts";
@@ -45,7 +46,7 @@ export function useFetchDeletionRequests() {
 
   return useQuery({
     queryKey: ["deletion-requests"],
-    queryFn: () => getDeletionRequestDetail(axios),
+    queryFn: () => getDeletionRequests(axios),
   });
 }
 

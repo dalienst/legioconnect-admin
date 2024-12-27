@@ -52,7 +52,7 @@ export default function Navbar() {
                     : "nav-link text-white"
                 }`}
               >
-                Users & Accounts
+                Users
               </Link>
             </li>
 
@@ -66,6 +66,19 @@ export default function Navbar() {
                 }`}
               >
                 App Reports & Feedback
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                href="/deletion-requests"
+                className={`${
+                  pathname === "/deletion-requests"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
+                }`}
+              >
+                Account Deletion
               </Link>
             </li>
 
