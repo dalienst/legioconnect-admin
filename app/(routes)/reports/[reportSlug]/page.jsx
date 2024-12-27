@@ -70,11 +70,12 @@ function ReportDetail({ params }) {
         </p>
 
         {report?.is_solved === false && (
-          <div className="form-check">
+          <div className="form-check form-switch">
             <input
               type="checkbox"
               name="is_solved"
               id="is_solved"
+              role="switch"
               className="form-check-input"
               checked={isSolved}
               onChange={(e) => {
@@ -82,7 +83,11 @@ function ReportDetail({ params }) {
                 handleSolveReport(reportSlug?.reportSlug);
               }}
             />
-            <label htmlFor="is_solved" className="form-check-label">
+            <label
+              htmlFor="is_solved"
+              id="is_solved"
+              className="form-check-label"
+            >
               Close Report
             </label>
           </div>
