@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-md navbar-style mb-3 shadow">
       <div className="container-fluid">
-        <Link href="/" className="navbar-brand nav-text fw-bold">
+        <Link href="/" className="navbar-brand text-white fw-bold">
           LegioConnect
         </Link>
 
@@ -17,7 +17,7 @@ function Navbar() {
           data-bs-target="#collapsibleNavbar"
           aria-controls="collapsibleNavbar"
         >
-          <i className="bi bi-list nav-text"></i>
+          <i className="bi bi-list text-white"></i>
         </button>
 
         <div
@@ -28,7 +28,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 href="/"
-                className="nav-link nav-text fw-bold"
+                className="nav-link text-white fw-bold"
                 aria-current="page"
               >
                 Home
@@ -38,7 +38,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 href="/privacy-policy"
-                className="nav-link nav-text fw-bold"
+                className="nav-link text-white fw-bold"
                 aria-current="page"
               >
                 Talk to us
@@ -48,7 +48,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 href="/privacy-policy"
-                className="nav-link nav-text fw-bold"
+                className="nav-link text-white fw-bold"
                 aria-current="page"
               >
                 Privacy Policy
