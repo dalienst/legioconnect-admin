@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import extractDate from "@/hooks/useDateFormat";
+import Link from "next/link";
 
 function UsersTable({ users }) {
   return (
@@ -48,6 +49,11 @@ function UsersTable({ users }) {
                   </td>
                   <td>{user?.email}</td>
                   <td>{extractDate(user?.created_at)}</td>
+                  <td>
+                    <Link href={`/users/${user?.slug}`} className="btn btn-sm">
+                      <i className="bi bi-pencil-square"></i>
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
