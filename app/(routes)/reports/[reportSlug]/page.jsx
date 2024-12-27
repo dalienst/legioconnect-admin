@@ -3,13 +3,16 @@ import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { useFetchReportDetail } from "@/hooks/reports/actions";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import extractDate from "@/hooks/useDateFormat";
+import { updateReport } from "@/services/reports";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { use, useState } from "react";
+import toast from "react-hot-toast";
 
 function ReportDetail({ params }) {
   const reportSlug = use(params);
   const [loading, setLoading] = useState(false);
+  const [isSolved, setIsSolved] = useState(false);
   const axios = useAxiosAuth();
   const router = useRouter();
 
@@ -18,6 +21,17 @@ function ReportDetail({ params }) {
     data: report,
     refetch: refetchReport,
   } = useFetchReportDetail(reportSlug?.reportSlug);
+
+  const handleSolveReport = async (reportSlug) => {
+    try {
+      await updateReport(reportSlug, { is_solved: !isSolved }, axios);
+      refetchReport();
+      setIsSolved((prev) => !prev);
+      toast.success("Report Closed successfully");
+    } catch (error) {
+      toast.error("Error closing report");
+    }
+  };
 
   if (isLoadingReport) return <LoadingSpinner />;
 
@@ -38,7 +52,14 @@ function ReportDetail({ params }) {
       </nav>
 
       <section className="mb-3 border-bottom">
-        <h4>{report?.title}</h4>
+        <h5>
+          {report?.title} -{" "}
+          {report?.is_solved === true ? (
+            <span className="badge bg-success rounded-pill">Solved</span>
+          ) : (
+            <span className="badge bg-danger rounded-pill">Open</span>
+          )}
+        </h5>
         <p className="text-muted mb-0">
           <strong>Reference: </strong>
           {report?.reference}
@@ -47,6 +68,25 @@ function ReportDetail({ params }) {
           <strong>Logged: </strong>
           {extractDate(report?.created_at)}
         </p>
+
+        {report?.is_solved === false && (
+          <div className="form-check">
+            <input
+              type="checkbox"
+              name="is_solved"
+              id="is_solved"
+              className="form-check-input"
+              checked={isSolved}
+              onChange={(e) => {
+                setIsSolved(!isSolved);
+                handleSolveReport(reportSlug?.reportSlug);
+              }}
+            />
+            <label htmlFor="is_solved" className="form-check-label">
+              Close Report
+            </label>
+          </div>
+        )}
       </section>
 
       <section className="mb-3">

@@ -16,6 +16,10 @@ export const createReport = async (values, axios) => {
   await apiActions?.post(`/api/reports/`, values, axios);
 };
 
+export const updateReport = async (slug, values, axios) => {
+  await apiActions?.patch(`/api/reports/${slug}/`, values, axios);
+};
+
 export const deleteReport = async (slug, axios) => {
   await apiActions?.delete(`/api/reports/${slug}/`, axios);
 };
