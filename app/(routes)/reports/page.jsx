@@ -37,7 +37,10 @@ function AppReports() {
 
       <section className="mb-3">
         <h3 className="dash-text">Reports</h3>
-        <p className="lead small">Find all application reports here</p>
+        <p className="lead small">
+          Access all application reports, feedback, suggestions, and feature
+          requests in one place.
+        </p>
       </section>
 
       <section className="mb-3 col-md-3">
