@@ -5,6 +5,7 @@ import useAxiosAuth from "@/hooks/useAxiosAuth";
 import extractDate from "@/hooks/useDateFormat";
 import { deleteUser } from "@/services/accounts";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { use, useState } from "react";
 import toast from "react-hot-toast";
@@ -39,7 +40,19 @@ function UserDetail({ params }) {
   return (
     <>
       <div className="container-fluid">
-        <h6 className="text-uppercase text-muted">User: {user?.email}</h6>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link href="/dashboard">Dashboard</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link href="/users">All Users</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              {user?.first_name} {user?.last_name}
+            </li>
+          </ol>
+        </nav>
 
         <section className="mb-3 card">
           <div className="card-body">
@@ -83,13 +96,15 @@ function UserDetail({ params }) {
               <strong>Last Streak Date:</strong> {user?.last_streak_date}
             </p>
 
-            <button
-              onClick={handleDeleteUser}
-              disabled={loading}
-              className="btn mt-3"
-            >
-              {loading ? "Deleting..." : "Delete User"}
-            </button>
+            {!user?.is_staff ? (
+              <button
+                onClick={handleDeleteUser}
+                disabled={loading}
+                className="btn mt-3"
+              >
+                {loading ? "Deleting..." : "Delete User"}
+              </button>
+            ) : null}
           </div>
         </section>
       </div>

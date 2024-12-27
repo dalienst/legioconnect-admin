@@ -6,6 +6,7 @@ import useUserId from "@/hooks/useUserId";
 import { updateUser } from "@/services/accounts";
 import { Field, Form, Formik } from "formik";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -24,7 +25,16 @@ export default function Settings() {
 
   return (
     <div className="container-fluid">
-      <h6 className="text-uppercase text-muted">Settings</h6>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Account Settings
+          </li>
+        </ol>
+      </nav>
       <article className="card">
         <h3 className="card-header bg-white">Account Settings</h3>
 

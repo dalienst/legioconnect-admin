@@ -41,7 +41,6 @@ function Dashboard() {
     refetch: refetchReports,
   } = useFetchReports();
 
-
   if (isLoadingAccount) return <LoadingSpinner />;
 
   return (
@@ -56,11 +55,11 @@ function Dashboard() {
 
       <section className="row">
         <div className="col-md-4 col-sm-12 mb-3">
-          <DataCard item={users} title="User Accounts Created" />
+          <DataCard item={users} title="User Accounts Created" link="users" />
         </div>
 
         <div className="col-md-4 col-sm-12 mb-3">
-          <DataCard item={dailyverses} title="Daily Verses Created" />
+          <DataCard item={dailyverses} title="Daily Verses Created" link="" />
         </div>
 
         <div className="col-md-4 col-sm-12 mb-3">

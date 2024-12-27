@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import UsersTable from "@/components/users/UsersTable";
 import { useFetchUsers } from "@/hooks/accounts/actions";
+import Link from "next/link";
 
 function UserList() {
   const {
@@ -26,7 +27,16 @@ function UserList() {
 
   return (
     <div className="container-fluid">
-      <h6 className="text-uppercase text-muted">User List</h6>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            All Users
+          </li>
+        </ol>
+      </nav>
 
       <section className="mb-3">
         <h3 className="dash-text">Users</h3>
