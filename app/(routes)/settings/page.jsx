@@ -23,7 +23,8 @@ export default function Settings() {
   if (isLoadingAccount) return <LoadingSpinner />;
 
   return (
-    <div className="container py-5">
+    <div className="container-fluid">
+      <h6 className="text-uppercase text-muted">Settings</h6>
       <article className="card">
         <h3 className="card-header bg-white">Account Settings</h3>
 

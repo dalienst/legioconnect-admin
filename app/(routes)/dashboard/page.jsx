@@ -47,6 +47,7 @@ function Dashboard() {
 
   return (
     <div className="container-fluid">
+      <h6 className="text-uppercase text-muted">Dashboard</h6>
       <section className="mb-3">
         <h3 className="dash-text">
           Hello, {account?.first_name || account?.email}

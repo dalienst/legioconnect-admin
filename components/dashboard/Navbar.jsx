@@ -35,7 +35,7 @@ export default function Navbar() {
                 href="/dashboard"
                 className={`${
                   pathname === "/dashboard"
-                    ? "nav-link nav-active"
+                    ? "nav-link text-info"
                     : "nav-link  nav-text"
                 }`}
               >
@@ -48,7 +48,7 @@ export default function Navbar() {
                 href="/settings"
                 className={`${
                   pathname === "/settings"
-                    ? "nav-link nav-active"
+                    ? "nav-link text-info"
                     : "nav-link nav-text"
                 }`}
               >
