@@ -41,7 +41,6 @@ function Dashboard() {
     refetch: refetchReports,
   } = useFetchReports();
 
-  console.log(users);
 
   if (isLoadingAccount) return <LoadingSpinner />;
 

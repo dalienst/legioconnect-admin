@@ -43,6 +43,19 @@ export default function Navbar() {
               </Link>
             </li>
 
+            <li className="nav-item">
+              <Link
+                href="/users"
+                className={`${
+                  pathname === "/users"
+                    ? "nav-link text-info"
+                    : "nav-link nav-text"
+                }`}
+              >
+                Users
+              </Link>
+            </li>
+
             <li className="nav-item ">
               <Link
                 href="/settings"
