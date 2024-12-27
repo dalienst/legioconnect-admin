@@ -3,7 +3,7 @@ import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { useFetchReportDetail } from "@/hooks/reports/actions";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import extractDate from "@/hooks/useDateFormat";
-import { updateReport } from "@/services/reports";
+import { deleteReport, updateReport } from "@/services/reports";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { use, useState } from "react";
@@ -30,6 +30,19 @@ function ReportDetail({ params }) {
       toast.success("Report Closed successfully");
     } catch (error) {
       toast.error("Error closing report");
+    }
+  };
+
+  const handleDeleteReport = async () => {
+    setLoading(true);
+    try {
+      await deleteReport(reportSlug?.reportSlug, axios);
+      toast?.success("Report deleted successfully");
+      router?.push("/reports");
+    } catch (error) {
+      toast?.error("Error deleting report");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -96,6 +109,12 @@ function ReportDetail({ params }) {
 
       <section className="mb-3">
         <p className="text-justify">{report?.description}</p>
+      </section>
+
+      <section>
+        <button onClick={handleDeleteReport} className="btn" disabled={loading}>
+          {loading ? "Deleting..." : "Delete Report"}
+        </button>
       </section>
     </div>
   );

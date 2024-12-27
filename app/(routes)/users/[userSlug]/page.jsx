@@ -29,7 +29,7 @@ function UserDetail({ params }) {
       toast?.success("User deleted successfully");
       router?.push("/users");
     } catch (error) {
-      toast?.error(error?.response?.data?.detail);
+      toast?.error("Error deleting user");
     } finally {
       setLoading(false);
     }
