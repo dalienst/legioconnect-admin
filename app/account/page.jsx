@@ -1,5 +1,5 @@
 "use client";
-import axios from "axios";
+import { accountDeletionRequest } from "@/services/accounts";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -16,7 +16,7 @@ function AccountDeletion() {
           >
             Account Deletion Request
           </h5>
-          <p className="text-center">
+          <p className="text-center text-muted">
             Please fill out the form below to request the deletion of your
             account.
           </p>
@@ -25,12 +25,17 @@ function AccountDeletion() {
             onSubmit={async (values, { resetForm }) => {
               setIsLoading(true);
               try {
-                await axios?.post("https://formspree.io/f/xqaakzbq", values);
+                await accountDeletionRequest(values);
                 toast?.success("Deletion request submitted successfully!");
                 resetForm();
               } catch (error) {
+                if (error?.response?.data?.email[0]) {
+                  toast?.error(error?.response?.data?.email[0]);
+                } else {
+                  toast?.error("Something went wrong, please try again later.");
+                }
+              } finally {
                 setIsLoading(false);
-                toast?.error("Something went wrong, please try again later.");
               }
             }}
           >
@@ -45,6 +50,7 @@ function AccountDeletion() {
                     type="email"
                     className="form-control"
                     placeholder="Enter your email"
+                    required
                   />
                 </div>
 
@@ -59,14 +65,11 @@ function AccountDeletion() {
                     as="textarea"
                     placeholder="Why would you like to delete your account?"
                     rows="4"
+                    required
                   />
                 </div>
 
-                <button
-                  disabled={isLoading}
-                  type="submit"
-                  className="btn"
-                >
+                <button disabled={isLoading} type="submit" className="btn">
                   {isLoading ? "Submitting..." : "Request Deletion"}
                 </button>
               </Form>

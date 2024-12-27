@@ -1,4 +1,4 @@
-import { apiMultipartActions } from "@/tools/api";
+import { apiActions, apiMultipartActions } from "@/tools/api";
 
 export const getUser = async (useUserId, axios) => {
   const response = await apiMultipartActions?.get(
@@ -33,4 +33,8 @@ export const getUserDetail = async (slug, axios) => {
 
 export const deleteUser = async (slug, axios) => {
   await apiMultipartActions?.delete(`/api/accounts/users/${slug}/`, axios);
+};
+
+export const accountDeletionRequest = async (values) => {
+  await apiActions?.post("/api/accounts/delete/account/", values);
 };

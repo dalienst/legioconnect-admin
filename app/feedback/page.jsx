@@ -17,7 +17,7 @@ function Feedback() {
           <h5 className="card-title text-center" style={{ color: "#4b1719" }}>
             Tell us what you think😊
           </h5>
-          <p className="card-text text-center">
+          <p className="card-text text-center text-muted">
             Is it a bug? Is it a feature request? It could be a compliment. We
             would love to hear your feedback!
           </p>
@@ -59,11 +59,11 @@ function Feedback() {
                       }
                     >
                       <option value="">Select an option</option>
-                      <option value="bug">Report a bug</option>
-                      <option value="suggestion">Suggest an improvement</option>
-                      <option value="feature">Request a feature</option>
-                      <option value="feedback">Give feedback</option>
-                      <option value="compliment">Give a compliment</option>
+                      <option value="Bug">Report a bug</option>
+                      <option value="Suggestion">Suggest an improvement</option>
+                      <option value="Feature">Request a feature</option>
+                      <option value="Feedback">Give feedback</option>
+                      <option value="Compliment">Give a compliment</option>
                     </Field>
                   </div>
 
