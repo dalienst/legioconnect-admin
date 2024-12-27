@@ -10,11 +10,13 @@ function Feedback() {
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <section
-        className="card shadow-lg"
+        className="card shadow-lg border-0"
         style={{ maxWidth: "500px", width: "100%" }}
       >
         <div className="card-body">
-          <h5 className="card-title text-center">Tell us what you think😊</h5>
+          <h5 className="card-title text-center" style={{ color: "#4b1719" }}>
+            Tell us what you think😊
+          </h5>
           <p className="card-text text-center">
             Is it a bug? Is it a feature request? It could be a compliment. We
             would love to hear your feedback!
