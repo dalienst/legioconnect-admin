@@ -10,5 +10,9 @@ export const getUser = async (useUserId, axios) => {
 };
 
 export const updateUser = async (useUserId, formData, axios) => {
-  await apiMultipartActions?.put(`/api/accounts/${useUserId}/`, formData, axios);
+  await apiMultipartActions?.patch(
+    `/api/accounts/${useUserId}/`,
+    formData,
+    axios
+  );
 };

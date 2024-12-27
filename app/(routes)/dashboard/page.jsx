@@ -20,13 +20,12 @@ function Dashboard() {
     refetch: refetchDailyVerse,
   } = useFetchDailyVerses();
 
-
   if (isLoadingAccount || isLoadingDailyVerses) return <LoadingSpinner />;
 
   return (
     <div className="container-fluid">
       <section className="mb-3">
-        <h3 className="dash-text">Hello, {account?.first_name}</h3>
+        <h3 className="dash-text">Hello, {account?.first_name || account?.email}</h3>
         <p className="lead">This is the admin dashboard</p>
       </section>
 
