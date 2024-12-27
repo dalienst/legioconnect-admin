@@ -31,8 +31,8 @@ export default function Settings() {
           <Formik
             initialValues={{
               avatar: null,
-              first_name: profile.first_name || "",
-              last_name: profile.last_name || "",
+              first_name: profile?.first_name || "",
+              last_name: profile?.last_name || "",
             }}
             onSubmit={async (values) => {
               setLoading(true);
