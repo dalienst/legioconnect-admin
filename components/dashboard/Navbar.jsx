@@ -56,6 +56,19 @@ export default function Navbar() {
               </Link>
             </li>
 
+            <li className="nav-item">
+              <Link
+                href="/reports"
+                className={`${
+                  pathname === "/reports"
+                    ? "nav-link text-info"
+                    : "nav-link nav-text"
+                }`}
+              >
+                App Reports
+              </Link>
+            </li>
+
             <li className="nav-item ">
               <Link
                 href="/settings"

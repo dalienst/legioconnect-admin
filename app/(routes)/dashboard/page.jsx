@@ -11,7 +11,6 @@ import Modal from "react-bootstrap/Modal";
 
 function Dashboard() {
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -41,7 +40,13 @@ function Dashboard() {
     refetch: refetchReports,
   } = useFetchReports();
 
-  if (isLoadingAccount) return <LoadingSpinner />;
+  if (
+    isLoadingAccount ||
+    isLoadingDailyVerses ||
+    isLoadingUsers ||
+    isLoadingReports
+  )
+    return <LoadingSpinner />;
 
   return (
     <div className="container-fluid">
@@ -63,11 +68,11 @@ function Dashboard() {
         </div>
 
         <div className="col-md-4 col-sm-12 mb-3">
-          <DataCard item={reports} title="Reports Created" />
+          <DataCard item={reports} title="Reports Created" link="reports" />
         </div>
       </section>
 
-      <section className="card">
+      <section className="card mb-3">
         <div className="mb-3 d-flex flex-row flex-md-row justify-content-between align-items-start align-items-md-center card-header bg-white">
           <h5>Daily Verses</h5>
 
