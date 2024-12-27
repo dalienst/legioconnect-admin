@@ -1,7 +1,7 @@
 "use client";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import AddDailyVerse from "@/forms/AddDailyVerse";
-import useFetchAccount from "@/hooks/accounts/useFetchAccount";
+import  { useFetchAccount, useFetchUsers } from "@/hooks/accounts/actions";
 import { useFetchDailyVerses } from "@/hooks/dailyverse/dailyverse";
 import DailyVerseTable from "@/tables/DailyVerseTable";
 import React, { useState } from "react";
@@ -12,7 +12,13 @@ function Dashboard() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { isLoading: isLoadingAccount, data: account } = useFetchAccount();
+
+  const {
+    isLoading: isLoadingAccount,
+    data: account,
+    refetch: refetchAccount,
+  } = useFetchAccount();
+
   const {
     isLoading: isLoadingDailyVerses,
     data: dailyverses,
@@ -20,12 +26,22 @@ function Dashboard() {
     refetch: refetchDailyVerse,
   } = useFetchDailyVerses();
 
+  const {
+    isLoading: isLoadingUsers,
+    data: users,
+    refetch: refetchUsers,
+  } = useFetchUsers();
+
+  console.log(users)
+
   if (isLoadingAccount || isLoadingDailyVerses) return <LoadingSpinner />;
 
   return (
     <div className="container-fluid">
       <section className="mb-3">
-        <h3 className="dash-text">Hello, {account?.first_name || account?.email}</h3>
+        <h3 className="dash-text">
+          Hello, {account?.first_name || account?.email}
+        </h3>
         <p className="lead">This is the admin dashboard</p>
       </section>
 

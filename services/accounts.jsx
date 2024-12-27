@@ -16,3 +16,21 @@ export const updateUser = async (useUserId, formData, axios) => {
     axios
   );
 };
+
+export const getAllUsers = async (axios) => {
+  const response = await apiMultipartActions?.get(`/api/accounts/`, axios);
+  return response?.data?.results || [];
+};
+
+export const getUserDetail = async (slug, axios) => {
+  const response = await apiMultipartActions?.get(
+    `/api/accounts/users/${slug}/`,
+    axios
+  );
+
+  return response?.data || {};
+};
+
+export const deleteUser = async (slug, axios) => {
+  await apiMultipartActions?.delete(`/api/accounts/users/${slug}/`, axios);
+};

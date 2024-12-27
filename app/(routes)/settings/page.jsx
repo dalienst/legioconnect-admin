@@ -1,6 +1,6 @@
 "use client";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
-import useFetchAccount from "@/hooks/accounts/useFetchAccount";
+import { useFetchAccount } from "@/hooks/accounts/actions";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import useUserId from "@/hooks/useUserId";
 import { updateUser } from "@/services/accounts";

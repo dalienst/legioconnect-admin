@@ -1,13 +1,11 @@
 "use client";
 
-import useFetchAccount from "@/hooks/accounts/useFetchAccount";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { signOut } from "next-auth/react";
 
 export default function Navbar() {
-  const { isLoading: isLoadingAccount, data: account } = useFetchAccount();
   const pathname = usePathname();
 
   return (
