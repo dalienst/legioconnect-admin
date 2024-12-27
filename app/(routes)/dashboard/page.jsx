@@ -1,14 +1,17 @@
 "use client";
+import DataCard from "@/components/dashboard/DataCard";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import AddDailyVerse from "@/forms/AddDailyVerse";
-import  { useFetchAccount, useFetchUsers } from "@/hooks/accounts/actions";
+import { useFetchAccount, useFetchUsers } from "@/hooks/accounts/actions";
 import { useFetchDailyVerses } from "@/hooks/dailyverse/dailyverse";
+import { useFetchReports } from "@/hooks/reports/actions";
 import DailyVerseTable from "@/tables/DailyVerseTable";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
 function Dashboard() {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,9 +35,15 @@ function Dashboard() {
     refetch: refetchUsers,
   } = useFetchUsers();
 
-  console.log(users)
+  const {
+    isLoading: isLoadingReports,
+    data: reports,
+    refetch: refetchReports,
+  } = useFetchReports();
 
-  if (isLoadingAccount || isLoadingDailyVerses) return <LoadingSpinner />;
+  console.log(users);
+
+  if (isLoadingAccount) return <LoadingSpinner />;
 
   return (
     <div className="container-fluid">
@@ -42,7 +51,21 @@ function Dashboard() {
         <h3 className="dash-text">
           Hello, {account?.first_name || account?.email}
         </h3>
-        <p className="lead">This is the admin dashboard</p>
+        <p className="lead small">Welcome to the admin dashboard</p>
+      </section>
+
+      <section className="row">
+        <div className="col-md-4 col-sm-12 mb-3">
+          <DataCard item={users} title="User Accounts Created" />
+        </div>
+
+        <div className="col-md-4 col-sm-12 mb-3">
+          <DataCard item={dailyverses} title="Daily Verses Created" />
+        </div>
+
+        <div className="col-md-4 col-sm-12 mb-3">
+          <DataCard item={reports} title="Reports Created" />
+        </div>
       </section>
 
       <section className="card">
