@@ -38,11 +38,11 @@ export default function Settings() {
               setLoading(true);
               try {
                 const formData = new FormData();
-                if (values.avatar) {
-                  formData.append("avatar", values.avatar);
+                if (values?.avatar) {
+                  formData.append("avatar", values?.avatar);
                 }
-                formData.append("first_name", values.first_name);
-                formData.append("last_name", values.last_name);
+                formData.append("first_name", values?.first_name);
+                formData.append("last_name", values?.last_name);
 
                 await updateUser(userId, formData, axios);
                 toast?.success("Profile updated successfully!");
