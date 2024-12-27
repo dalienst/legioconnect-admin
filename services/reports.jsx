@@ -12,8 +12,8 @@ export const getReportDetail = async (slug, axios) => {
   return response?.data || {};
 };
 
-export const createReport = async (values, axios) => {
-  await apiActions?.post(`/api/reports/`, values, axios);
+export const createReport = async (values) => {
+  await apiActions?.post(`/api/reports/create/`, values);
 };
 
 export const updateReport = async (slug, values, axios) => {

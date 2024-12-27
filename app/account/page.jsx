@@ -64,7 +64,7 @@ function AccountDeletion() {
                 <button
                   disabled={isLoading}
                   type="submit"
-                  className="btn btn-danger btn-lg px-4"
+                  className="btn btn-lg px-4"
                 >
                   {isLoading ? "Submitting..." : "Request Deletion"}
                 </button>
