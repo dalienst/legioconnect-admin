@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 
 export default function DailyVerseTable({ dailyverses }) {
@@ -11,6 +12,7 @@ export default function DailyVerseTable({ dailyverses }) {
             <th scope="col">Date</th>
             <th scope="col">Reference</th>
             <th scope="col">Text</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +22,14 @@ export default function DailyVerseTable({ dailyverses }) {
               <td>{dailyverse?.active_date}</td>
               <td>{dailyverse?.verse_reference}</td>
               <td>{dailyverse?.verse_text}</td>
+              <td>
+                <Link
+                  href={`/verses/${dailyverse?.slug}`}
+                  className="btn btn-sm"
+                >
+                  <i className="bi bi-eye"></i>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -9,7 +9,6 @@ export const getDailyVerse = async (axios) => {
   }
 };
 
-
 export const createDailyVerse = async (formData, axios) => {
   try {
     const response = await apiMultipartActions?.post(
@@ -17,33 +16,25 @@ export const createDailyVerse = async (formData, axios) => {
       formData,
       axios
     );
-    return response?.data; // Return the response for further handling
+    return response?.data;
   } catch (error) {
-    throw error; // Re-throw the error to be caught in the calling code
+    throw error;
   }
 };
 
-export const updateDailyVerse = async (formData, axios) => {
-  try {
-    await apiMultipartActions?.put(`/api/dailyverse/`, formData, axios);
-  } catch (error) {}
+export const updateDailyVerse = async (slug, formData, axios) => {
+  await apiMultipartActions?.patch(`/api/dailyverse/${slug}/`, formData, axios);
 };
 
-export const deleteDailyVerse = async (axios) => {
-  try {
-    await apiMultipartActions?.delete(`/api/dailyverse/`, axios);
-  } catch (error) {}
+export const deleteDailyVerse = async (slug, axios) => {
+  await apiMultipartActions?.delete(`/api/dailyverse/${slug}/`, axios);
 };
 
 export const getDailyVerseDetail = async (slug, axios) => {
-  try {
-    const response = await apiMultipartActions?.get(
-      `/api/dailyverse/${slug}/`,
-      axios
-    );
+  const response = await apiMultipartActions?.get(
+    `/api/dailyverse/${slug}/`,
+    axios
+  );
 
-    return response?.data?.results || [];
-  } catch (error) {
-    return [];
-  }
+  return response?.data || {};
 };

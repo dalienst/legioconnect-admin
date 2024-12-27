@@ -47,17 +47,6 @@ body {
   color: #4b1719;
 }
 
-.nav-text-color {
-  color: #4b1719;
-}
-
-.nav-text {
-  color: var(--cardGrey);
-}
-
-.nav-active {
-  color: var(--brownish);
-}
 
 .dash-text {
   color: #4b1719;
@@ -102,4 +91,14 @@ body {
   color: #4b1719;
   font-weight: 700;
   font-size: 20px;
+}
+
+.btn {
+  background-color: #4b1719;
+  color: #fff;
+
+  &:hover {
+    border: 1px solid #4b1719;
+    color: #4b1719;
+  }
 }

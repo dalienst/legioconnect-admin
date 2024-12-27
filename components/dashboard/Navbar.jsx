@@ -1,19 +1,17 @@
 "use client";
 
-import useFetchAccount from "@/hooks/accounts/useFetchAccount";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { signOut } from "next-auth/react";
 
 export default function Navbar() {
-  const { isLoading: isLoadingAccount, data: account } = useFetchAccount();
   const pathname = usePathname();
 
   return (
     <nav className="navbar navbar-expand-md navbar-style mb-3 shadow">
       <div className="container-fluid">
-        <Link href="/dashboard" className="navbar-brand nav-text fw-bold">
+        <Link href="/dashboard" className="navbar-brand text-white fw-bold">
           LegioConnect
         </Link>
 
@@ -24,7 +22,7 @@ export default function Navbar() {
           data-bs-target="#collapsibleNavbar"
           aria-controls="collapsibleNavbar"
         >
-          <i className="bi bi-list nav-text"></i>
+          <i className="bi bi-list text-white"></i>
         </button>
 
         <div
@@ -37,11 +35,63 @@ export default function Navbar() {
                 href="/dashboard"
                 className={`${
                   pathname === "/dashboard"
-                    ? "nav-link nav-active"
-                    : "nav-link  nav-text"
+                    ? "nav-link text-info"
+                    : "nav-link  text-white"
                 }`}
               >
                 Dashboard
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                href="/users"
+                className={`${
+                  pathname === "/users"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
+                }`}
+              >
+                Users
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                href="/verses"
+                className={`${
+                  pathname === "/verses"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
+                }`}
+              >
+                Daily Verse
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                href="/reports"
+                className={`${
+                  pathname === "/reports"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
+                }`}
+              >
+                App Reports & Feedback
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                href="/deletion-requests"
+                className={`${
+                  pathname === "/deletion-requests"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
+                }`}
+              >
+                Account Deletion
               </Link>
             </li>
 
@@ -50,8 +100,8 @@ export default function Navbar() {
                 href="/settings"
                 className={`${
                   pathname === "/settings"
-                    ? "nav-link nav-active"
-                    : "nav-link nav-text"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
                 }`}
               >
                 Settings

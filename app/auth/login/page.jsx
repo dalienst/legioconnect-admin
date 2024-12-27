@@ -41,7 +41,7 @@ export default function LoginPage() {
         className="card shadow p-4 rounded"
         style={{ maxWidth: "400px", width: "100%" }}
       >
-        <h3 className="text-center mb-3 text-success">Welcome Back!</h3>
+        <h3 className="text-center mb-3" style={{ color: "#4b1719" }}>Welcome Back!</h3>
         <p className="text-center text-muted">
           Enter your credentials to access your account
         </p>
@@ -75,8 +75,9 @@ export default function LoginPage() {
           <div className="d-grid mt-4">
             <button
               type="submit"
-              className="btn btn-success"
+              className="btn"
               disabled={loading}
+              
             >
               {loading ? (
                 <>

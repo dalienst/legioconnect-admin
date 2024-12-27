@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/landing/Footer";
 import Navbar from "@/components/landing/Navbar";
 import { appFeatures } from "@/data/features";
 import Image from "next/image";
@@ -11,7 +12,9 @@ export default function LandingPage() {
       <Navbar />
       <div className="container py-5">
         <section className="mb-5">
-          <h1 className="text-center fw-bold" style={{ color: "#4b1719" }}>LegioConnect Application</h1>
+          <h1 className="text-center fw-bold" style={{ color: "#4b1719" }}>
+            LegioConnect Application
+          </h1>
           <p className="text-center w-75 mx-auto text-muted lead">
             LegioConnect is an application created for members of Legio Maria
             and those interested in learning more about the faith. It offers
@@ -76,6 +79,7 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
+      <Footer />
     </>
   );
 }

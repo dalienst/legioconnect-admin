@@ -41,6 +41,16 @@ function Navbar() {
                 className="nav-link nav-text fw-bold"
                 aria-current="page"
               >
+                Talk to us
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                href="/privacy-policy"
+                className="nav-link nav-text fw-bold"
+                aria-current="page"
+              >
                 Privacy Policy
               </Link>
             </li>
