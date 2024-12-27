@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-md navbar-style mb-3 shadow">
       <div className="container-fluid">
-        <Link href="/dashboard" className="navbar-brand nav-text fw-bold">
+        <Link href="/dashboard" className="navbar-brand text-white fw-bold">
           LegioConnect
         </Link>
 
@@ -22,7 +22,7 @@ export default function Navbar() {
           data-bs-target="#collapsibleNavbar"
           aria-controls="collapsibleNavbar"
         >
-          <i className="bi bi-list nav-text"></i>
+          <i className="bi bi-list text-white"></i>
         </button>
 
         <div
@@ -36,7 +36,7 @@ export default function Navbar() {
                 className={`${
                   pathname === "/dashboard"
                     ? "nav-link text-info"
-                    : "nav-link  nav-text"
+                    : "nav-link  text-white"
                 }`}
               >
                 Dashboard
@@ -49,10 +49,10 @@ export default function Navbar() {
                 className={`${
                   pathname === "/users"
                     ? "nav-link text-info"
-                    : "nav-link nav-text"
+                    : "nav-link text-white"
                 }`}
               >
-                Users
+                Users & Accounts
               </Link>
             </li>
 
@@ -62,10 +62,10 @@ export default function Navbar() {
                 className={`${
                   pathname === "/reports"
                     ? "nav-link text-info"
-                    : "nav-link nav-text"
+                    : "nav-link text-white"
                 }`}
               >
-                App Reports
+                App Reports & Feedback
               </Link>
             </li>
 
@@ -75,7 +75,7 @@ export default function Navbar() {
                 className={`${
                   pathname === "/settings"
                     ? "nav-link text-info"
-                    : "nav-link nav-text"
+                    : "nav-link text-white"
                 }`}
               >
                 Settings

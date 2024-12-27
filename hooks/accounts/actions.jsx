@@ -3,7 +3,12 @@ import React from "react";
 import useUserId from "../useUserId";
 import useAxiosAuth from "../useAxiosAuth";
 import { useQuery } from "@tanstack/react-query";
-import { getAllUsers, getUser, getUserDetail } from "@/services/accounts";
+import {
+  getAllUsers,
+  getDeletionRequestDetail,
+  getUser,
+  getUserDetail,
+} from "@/services/accounts";
 
 export function useFetchAccount() {
   const userId = useUserId();
@@ -31,6 +36,25 @@ export function useFetchUserDetail(slug) {
   return useQuery({
     queryKey: ["user", slug],
     queryFn: () => getUserDetail(slug, axios),
+    enabled: !!slug,
+  });
+}
+
+export function useFetchDeletionRequests() {
+  const axios = useAxiosAuth();
+
+  return useQuery({
+    queryKey: ["deletion-requests"],
+    queryFn: () => getDeletionRequestDetail(axios),
+  });
+}
+
+export function useFetchDeletionRequestDetail(slug) {
+  const axios = useAxiosAuth();
+
+  return useQuery({
+    queryKey: ["deletion-request", slug],
+    queryFn: () => getDeletionRequestDetail(slug, axios),
     enabled: !!slug,
   });
 }

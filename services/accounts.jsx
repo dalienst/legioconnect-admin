@@ -38,3 +38,19 @@ export const deleteUser = async (slug, axios) => {
 export const accountDeletionRequest = async (values) => {
   await apiActions?.post("/api/accounts/delete/account/", values);
 };
+
+export const getDeletionRequests = async (axios) => {
+  const response = await apiActions?.get(
+    "/api/accounts/delete/requests/",
+    axios
+  );
+  return response?.data?.results || [];
+};
+
+export const getDeletionRequestDetail = async (slug, axios) => {
+  const response = await apiActions?.get(
+    `/api/accounts/delete/requests/${slug}/`,
+    axios
+  );
+  return response?.data || {};
+};
