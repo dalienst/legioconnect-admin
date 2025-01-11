@@ -27,6 +27,22 @@ export default function RootLayout({ children }) {
         />
         <meta property="og:url" content="https://www.legioconnect.com" />
         <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://www.legioconnect.com",
+              "name": "LegioConnect",
+              "description": "LegioConnect is an app for members of Legio Maria and faith learners, providing rich content on history, prayers, and the Bible.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "LegioConnect",
+                "url": "https://www.legioconnect.com"
+              }
+            }
+          `}
+        </script>
       </head>
 
       <body>
@@ -35,20 +51,6 @@ export default function RootLayout({ children }) {
           <TanstackQueryProvider>{children}</TanstackQueryProvider>
         </NextAuthProvider>
         <BootstrapClient />
-        <script type="application/ld+json">
-          {{
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            url: "https://www.legioconnect.com",
-            name: "LegioConnect",
-            description:
-              "LegioConnect is an app for members of Legio Maria and faith learners, providing rich content on history, prayers, and the Bible.",
-            publisher: {
-              "@type": "Organization",
-              name: "LegioConnect",
-            },
-          }}
-        </script>
       </body>
     </html>
   );
