@@ -14,9 +14,37 @@ export default function RootLayout({ children }) {
         <title>LegioConnect</title>
         <meta
           name="description"
-          content="LegioConnect is an application created for members of Legio Maria and those interested in learning more about the faith. It offers rich content on Legio Maria’s history, prayers, and the Bible, for deeper engagement with the faith."
+          content="LegioConnect is an application for members of Legio Maria and those interested in learning more about the faith. It offers rich content on Legio Maria’s history, prayers, and the Bible, for deeper engagement with the faith."
         />
+        <meta
+          name="keywords"
+          content="Legio Maria, LegioConnect, Catholic app, prayers, Bible, faith, Catholic community, religious history"
+        />
+        <meta property="og:title" content="LegioConnect" />
+        <meta
+          property="og:description"
+          content="LegioConnect is an app that provides in-depth content for Legio Maria members and those seeking to learn more about the faith."
+        />
+        <meta property="og:url" content="https://www.legioconnect.com" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://www.legioconnect.com",
+              "name": "LegioConnect",
+              "description": "LegioConnect is an app for members of Legio Maria and faith learners, providing rich content on history, prayers, and the Bible.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "LegioConnect",
+                "url": "https://www.legioconnect.com"
+              }
+            }
+          `}
+        </script>
       </head>
+
       <body>
         <Toaster position="top-right" />
         <NextAuthProvider>
