@@ -35,41 +35,45 @@ function AddCategory({ refetch, closeModal }) {
           }
         }}
       >
-        <Form>
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              Category Name
-            </label>
-            <Field type="text" name="name" className="form-control" />
-          </div>
+        {({ values }) => (
+          <>
+            <Form>
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  Category Name
+                </label>
+                <Field type="text" name="name" className="form-control" />
+              </div>
 
-          <div className="mb-3">
-            <label htmlFor="position" className="form-label">
-              Position
-            </label>
-            <Field type="number" name="position" className="form-control" />
-          </div>
+              <div className="mb-3">
+                <label htmlFor="position" className="form-label">
+                  Position
+                </label>
+                <Field type="number" name="position" className="form-control" />
+              </div>
 
-          <div className="mb-3">
-            <label htmlFor="description" className="form-label">
-              Description
-            </label>
-            <Field
-              as="textarea"
-              type="text"
-              name="description"
-              className="form-control"
-            />
-          </div>
+              <div className="mb-3">
+                <label htmlFor="description" className="form-label">
+                  Description
+                </label>
+                <Field
+                  as="textarea"
+                  type="text"
+                  name="description"
+                  className="form-control"
+                />
+              </div>
 
-          <button
-            type="submit"
-            className="btn btn-connect w-100"
-            disabled={loading}
-          >
-            {loading ? "Loading..." : "Submit"}
-          </button>
-        </Form>
+              <button
+                type="submit"
+                className="btn btn-connect w-100"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Submit"}
+              </button>
+            </Form>
+          </>
+        )}
       </Formik>
     </>
   );
