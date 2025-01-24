@@ -11,7 +11,7 @@ function CategoriesDisplay({ categories }) {
             <div key={category?.reference} className="accordion-item">
               <h4 className="accordion-header">
                 <button
-                  className="accordion-button collapsed"
+                  className="accordion-button collapsed fw-semibold"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#${category?.reference}`}
