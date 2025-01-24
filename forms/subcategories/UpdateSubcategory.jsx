@@ -112,7 +112,17 @@ function UpdateSubcategory({ category, refetch, closeModal, subcategory }) {
                 className="btn btn-connect w-100"
                 disabled={loading}
               >
-                {loading ? "Loading..." : "Update"}
+                {loading ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                    />
+                    Updating...
+                  </>
+                ) : (
+                  "Update"
+                )}
               </button>
             </Form>
           </>

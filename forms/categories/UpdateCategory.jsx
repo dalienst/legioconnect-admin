@@ -90,10 +90,20 @@ function UpdateCategory({ refetch, closeModal, category, slug }) {
 
                       <button
                         type="submit"
-                        className="btn btn-connect w-100"
+                        className="btn"
                         disabled={loading}
                       >
-                        {loading ? "Loading..." : "Update"}
+                        {loading ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-sm me-2"
+                              role="status"
+                            />
+                            Updating...
+                          </>
+                        ) : (
+                          "Update"
+                        )}
                       </button>
                     </Form>
                   </>
@@ -182,12 +192,18 @@ function UpdateCategory({ refetch, closeModal, category, slug }) {
                         />
                       </div>
 
-                      <button
-                        type="submit"
-                        className="btn btn-connect w-100"
-                        disabled={creating}
-                      >
-                        {creating ? "Loading..." : "Submit"}
+                      <button type="submit" className="btn" disabled={creating}>
+                        {creating ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-sm me-2"
+                              role="status"
+                            />
+                            Creating...
+                          </>
+                        ) : (
+                          "Create"
+                        )}
                       </button>
                     </Form>
                   </>

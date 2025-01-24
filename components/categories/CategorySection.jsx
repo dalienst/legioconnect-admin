@@ -14,7 +14,7 @@ function CategorySection({ categories, refetchCategories }) {
     <>
       <div className="card mb-3">
         <div className="mb-3 d-flex flex-row flex-md-row justify-content-between align-items-start align-items-md-center card-header bg-white">
-          <h3 className="dash-text">Categories</h3>
+          <h3 className="dash-text">KitapLemo Prayer Categories</h3>
 
           <div>
             <button className="btn btn-connect btn-sm" onClick={handleShow}>

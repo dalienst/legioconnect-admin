@@ -64,6 +64,7 @@ function CategoriesDisplay({ categories, refetchCategories }) {
                 >
                   <div className="accordion-body">
                     <section>
+                      <h6 className="fst-italic">Category Description</h6>
                       <p>{category?.description}</p>
                     </section>
 
@@ -132,12 +133,17 @@ function CategoriesDisplay({ categories, refetchCategories }) {
                           </div>
                         </>
                       ) : (
-                        <p>No subcategories</p>
+                        <div className="alert alert-info">
+                          <i className="bi bi-info-circle"></i> No Subcategories
+                        </div>
                       )}
                     </section>
+                    {/* End of Subcategories table */}
+
+                    {/* Category Details Button */}
                     <section>
                       <button
-                        className="btn btn-connect btn-sm"
+                        className="btn btn-sm"
                         onClick={() => handleShow(category)}
                       >
                         Category Details

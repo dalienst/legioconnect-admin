@@ -112,10 +112,20 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
 
               <button
                 type="submit"
-                className="btn btn-connect w-100"
+                className="btn"
                 disabled={loading}
               >
-                {loading ? "Loading..." : "Submit"}
+                {loading ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                    />
+                    Updating...
+                  </>
+                ) : (
+                  "Update"
+                )}
               </button>
             </Form>
           </>
