@@ -58,7 +58,7 @@ function Dashboard() {
     return <LoadingSpinner />;
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid pb-5">
       <h6 className="text-uppercase text-muted">Dashboard</h6>
       <section className="mb-3">
         <h3 className="dash-text">
@@ -122,12 +122,17 @@ function Dashboard() {
               <DailyVerseTable dailyverses={dailyverses} />
             </>
           ) : (
-            <p className="lead">No daily verses found</p>
+            <div className="alert alert-info">
+              <i className="bi bi-info-circle"></i> No daily verses found
+            </div>
           )}
         </div>
       </section>
 
-      <CategorySection categories={categories} refetchCategories={refetchCategories} />
+      <CategorySection
+        categories={categories}
+        refetchCategories={refetchCategories}
+      />
     </div>
   );
 }

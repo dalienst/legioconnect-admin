@@ -2,6 +2,7 @@
 import AddCategory from "@/forms/categories/AddCategory";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
+import CategoriesDisplay from "./CategoriesDisplay";
 
 function CategorySection({ categories, refetchCategories }) {
   const [show, setShow] = useState(false);
@@ -44,7 +45,17 @@ function CategorySection({ categories, refetchCategories }) {
             </Modal>
           </div>
         </div>
-        <div className="card-body"></div>
+        <div className="card-body">
+          {categories && categories.length > 0 ? (
+            <>
+              <CategoriesDisplay categories={categories} />
+            </>
+          ) : (
+            <div className="alert alert-info">
+              <i className="bi bi-info-circle"></i> No categories found
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
