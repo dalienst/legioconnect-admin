@@ -13,7 +13,7 @@ function CategorySection({ categories, refetchCategories }) {
   return (
     <>
       <div className="card mb-3">
-        <div className="mb-3 d-flex flex-row flex-md-row justify-content-between align-items-start align-items-md-center card-header bg-white">
+        <div className="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center card-header bg-white">
           <h3 className="dash-text">KitapLemo Prayer Categories</h3>
 
           <div>
@@ -48,7 +48,10 @@ function CategorySection({ categories, refetchCategories }) {
         <div className="card-body">
           {categories && categories.length > 0 ? (
             <>
-              <CategoriesDisplay categories={categories} refetchCategories={refetchCategories} />
+              <CategoriesDisplay
+                categories={categories}
+                refetchCategories={refetchCategories}
+              />
             </>
           ) : (
             <div className="alert alert-info">

@@ -102,3 +102,21 @@ body {
     color: #4b1719;
   }
 }
+
+.delete-btn {
+  border: 1px solid #4b1719;
+  color: #4b1719;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #4b1719;
+  color: #ffffff;
+  transform: scale(1.05);
+}

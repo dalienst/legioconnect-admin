@@ -4,7 +4,7 @@ import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function UpdateSubcategory({ category, refetch, closeModal, subcategory }) {
+function UpdateSubcategory({ categories, refetch, closeModal, subcategory }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
@@ -27,7 +27,7 @@ function UpdateSubcategory({ category, refetch, closeModal, subcategory }) {
             formData.append("position", values.position);
             formData.append("tod", values.tod);
             formData.append("description", values.description);
-            await updateSubcategory(subcategory?.reference, formData, axios);
+            await updateSubcategory(subcategory?.slug, formData, axios);
             toast.success("Subcategory created successfully!");
             refetch();
             closeModal();
@@ -49,9 +49,9 @@ function UpdateSubcategory({ category, refetch, closeModal, subcategory }) {
                 <label className="form-label">Category</label>
                 <Field as="select" name="category" className="form-select">
                   <option value="" disabled>
-                    {subcategory?.category?.name}
+                    {subcategory?.category_detail}
                   </option>
-                  {category.map((item) => (
+                  {categories.map((item) => (
                     <option key={item?.id} value={item?.reference}>
                       {item?.name}
                     </option>

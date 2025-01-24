@@ -86,7 +86,7 @@ function Dashboard() {
           <h5 className="dash-text">Daily Verses</h5>
 
           <div>
-            <button className="btn btn-connect btn-sm" onClick={handleShow}>
+            <button className="btn btn-sm" onClick={handleShow}>
               Add
             </button>
 
