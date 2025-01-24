@@ -4,6 +4,7 @@ import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { updateCategory } from "@/services/category";
 import { createSubcategory } from "@/services/subcategories";
 import { Field, Form, Formik } from "formik";
+import Link from "next/link";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -12,8 +13,105 @@ function UpdateCategory({ refetch, closeModal, category, slug }) {
   const [creating, setCreating] = useState(false);
   const axios = useAxiosAuth();
 
+  const [pagination, setPagination] = useState({}); // Track pagination per category
+
+  const itemsPerPage = 5; // Number of subcategories per page
+
+  const handlePageChange = (categoryRef, newPage) => {
+    setPagination((prev) => ({
+      ...prev,
+      [categoryRef]: newPage,
+    }));
+  };
+
+  const currentPage = pagination[category?.reference] || 1;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentSubcategories = category?.subcategories?.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  const totalPages = Math.ceil(
+    (category?.subcategories?.length || 0) / itemsPerPage
+  );
+
   return (
     <>
+      <section className="mb-3">
+        <div>
+          <h6 className="fst-italics">Category Description</h6>
+          <p>{category?.description}</p>
+        </div>
+
+        <div>
+          <h6 className="fst-italics">Subcategories</h6>
+          {/* Subcategories table */}
+          <section className="mb-3 ">
+            {category?.subcategories && category?.subcategories?.length > 0 ? (
+              <>
+                <div className="table-responsive">
+                  <table className="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Prayers</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentSubcategories?.map((subcategory) => (
+                        <tr key={subcategory?.reference}>
+                          <td>{subcategory?.name}</td>
+                          <td>{subcategory?.prayers?.length}</td>
+                          <td>
+                            <Link
+                              href={`/subcategories/${subcategory?.slug}`}
+                              className="btn btn-sm"
+                            >
+                              <i className="bi bi-eye"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Pagination Controls */}
+                <div className="d-flex justify-content-between align-items-center p-2 border">
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    onClick={() =>
+                      handlePageChange(category?.reference, currentPage - 1)
+                    }
+                    disabled={currentPage === 1}
+                  >
+                    Previous
+                  </button>
+                  <span>
+                    Page {currentPage} of {totalPages}
+                  </span>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    onClick={() =>
+                      handlePageChange(category?.reference, currentPage + 1)
+                    }
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="alert alert-info">
+                <i className="bi bi-info-circle"></i> No Subcategories
+              </div>
+            )}
+          </section>
+          {/* End of Subcategories table */}
+        </div>
+      </section>
+
+      {/* Forms */}
       <div className="row">
         <div className="col-md-7 col-sm-12 mb-3">
           <div className="card h-100">
@@ -88,11 +186,7 @@ function UpdateCategory({ refetch, closeModal, category, slug }) {
                         />
                       </div>
 
-                      <button
-                        type="submit"
-                        className="btn"
-                        disabled={loading}
-                      >
+                      <button type="submit" className="btn" disabled={loading}>
                         {loading ? (
                           <>
                             <span
