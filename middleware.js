@@ -8,5 +8,6 @@ export const config = {
     "/reports/:path*",
     "/deletion-requests/:path*",
     "/verses/:path*",
+    "/subcategories/:path*",
   ],
 };
