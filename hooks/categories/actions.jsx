@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "../useAxiosAuth";
-import { getAllCategories } from "@/services/category";
+import { getAllCategories, getCategoryDetail } from "@/services/category";
 
 export function useFetchCategories() {
   const axios = useAxiosAuth();

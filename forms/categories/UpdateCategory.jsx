@@ -1,26 +1,31 @@
 "use client";
+
 import useAxiosAuth from "@/hooks/useAxiosAuth";
-import { createCategory } from "@/services/category";
+import { updateCategory } from "@/services/category";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function AddCategory({ refetch, closeModal }) {
+function UpdateCategory({ refetch, closeModal, category, slug }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
-
   return (
     <>
       <Formik
         initialValues={{
-          name: "",
-          description: "",
-          position: "",
+          name: category?.name || "",
+          description: category?.description || "",
+          position: category?.position || "",
         }}
         onSubmit={async (values) => {
           setLoading(true);
           try {
-            await createCategory(values, axios);
+            const formData = new FormData();
+            formData.append("name", values.name);
+            formData.append("description", values.description);
+            formData.append("position", values.position);
+
+            await updateCategory(slug, formData, axios);
             toast.success("Category created successfully!");
             refetch();
             closeModal();
@@ -40,14 +45,24 @@ function AddCategory({ refetch, closeModal }) {
             <label htmlFor="name" className="form-label">
               Category Name
             </label>
-            <Field type="text" name="name" className="form-control" />
+            <Field
+              type="text"
+              name="name"
+              className="form-control"
+              placeholder={category?.name || "Category Name"}
+            />
           </div>
 
           <div className="mb-3">
             <label htmlFor="position" className="form-label">
               Position
             </label>
-            <Field type="number" name="position" className="form-control" />
+            <Field
+              type="number"
+              name="position"
+              className="form-control"
+              placeholder={category?.position || "Position"}
+            />
           </div>
 
           <div className="mb-3">
@@ -59,6 +74,7 @@ function AddCategory({ refetch, closeModal }) {
               type="text"
               name="description"
               className="form-control"
+              placeholder={category?.description || "Description"}
             />
           </div>
 
@@ -67,7 +83,7 @@ function AddCategory({ refetch, closeModal }) {
             className="btn btn-connect w-100"
             disabled={loading}
           >
-            {loading ? "Loading..." : "Submit"}
+            {loading ? "Loading..." : "Update"}
           </button>
         </Form>
       </Formik>
@@ -75,4 +91,4 @@ function AddCategory({ refetch, closeModal }) {
   );
 }
 
-export default AddCategory;
+export default UpdateCategory;
