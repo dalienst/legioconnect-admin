@@ -48,7 +48,7 @@ function CategorySection({ categories, refetchCategories }) {
         <div className="card-body">
           {categories && categories.length > 0 ? (
             <>
-              <CategoriesDisplay categories={categories} />
+              <CategoriesDisplay categories={categories} refetchCategories={refetchCategories} />
             </>
           ) : (
             <div className="alert alert-info">
