@@ -1,7 +1,7 @@
 "use client";
 
 import useAxiosAuth from "@/hooks/useAxiosAuth";
-import { updateCategory } from "@/services/category";
+import { deleteCategory, updateCategory } from "@/services/category";
 import { createSubcategory } from "@/services/subcategories";
 import { Field, Form, Formik } from "formik";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 function UpdateCategory({ refetch, closeModal, category, slug }) {
   const [loading, setLoading] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const axios = useAxiosAuth();
 
   const [pagination, setPagination] = useState({}); // Track pagination per category
@@ -33,6 +34,20 @@ function UpdateCategory({ refetch, closeModal, category, slug }) {
   const totalPages = Math.ceil(
     (category?.subcategories?.length || 0) / itemsPerPage
   );
+
+  const handleDelete = async () => {
+    setDeleting(true);
+    try {
+      await deleteCategory(slug, axios);
+      toast.success("Category deleted successfully");
+      refetch();
+      closeModal();
+    } catch (error) {
+      toast.error("Error deleting category");
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   return (
     <>
@@ -306,6 +321,26 @@ function UpdateCategory({ refetch, closeModal, category, slug }) {
             </div>
           </div>
         </div>
+      </div>
+      {/* end of forms */}
+      <div>
+        <button
+          className="btn btn-danger"
+          disabled={deleting}
+          onClick={handleDelete}
+        >
+          {deleting ? (
+            <>
+              <span
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+              />
+              Deleting...
+            </>
+          ) : (
+            "Delete"
+          )}
+        </button>
       </div>
     </>
   );
