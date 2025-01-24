@@ -1,4 +1,5 @@
 "use client";
+import UpdateCategory from "@/forms/categories/UpdateCategory";
 import Link from "next/link";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
@@ -65,12 +66,14 @@ function CategoriesDisplay({ categories, refetchCategories }) {
                     <section>
                       <p>{category?.description}</p>
                     </section>
-                    <section className="mb-3">
+
+                    {/* Subcategories table */}
+                    <section className="mb-3 ">
                       {category?.subcategories &&
                       category?.subcategories?.length > 0 ? (
                         <>
                           <div className="table-responsive">
-                            <table className="table table-striped">
+                            <table className="table table-striped table-bordered">
                               <thead>
                                 <tr>
                                   <th>Name</th>
@@ -98,7 +101,7 @@ function CategoriesDisplay({ categories, refetchCategories }) {
                           </div>
 
                           {/* Pagination Controls */}
-                          <div className="d-flex justify-content-between align-items-center">
+                          <div className="d-flex justify-content-between align-items-center p-2 border">
                             <button
                               className="btn btn-outline-secondary btn-sm"
                               onClick={() =>
@@ -153,12 +156,10 @@ function CategoriesDisplay({ categories, refetchCategories }) {
         <Modal
           show={show}
           onHide={handleClose}
-          dialogClassName="modal-dialog modal-dialog-centered"
+          dialogClassName="modal-dialog modal-xl"
         >
           <div className="modal-header">
-            <h5 className="modal-title">
-              Update Category: {selectedCategory?.name}
-            </h5>
+            <h5 className="modal-title">Category: {selectedCategory?.name}</h5>
             <button
               type="button"
               className="btn-close"
@@ -166,10 +167,12 @@ function CategoriesDisplay({ categories, refetchCategories }) {
             ></button>
           </div>
           <div className="modal-body">
-            <p>
-              <strong>Description:</strong> {selectedCategory?.description}
-            </p>
-            {/* Add form or update functionality here */}
+            <UpdateCategory
+              refetch={refetchCategories}
+              closeModal={handleClose}
+              category={selectedCategory}
+              slug={selectedCategory?.slug}
+            />
           </div>
         </Modal>
       )}
