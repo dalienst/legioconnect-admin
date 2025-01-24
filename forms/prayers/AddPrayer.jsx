@@ -44,8 +44,8 @@ function AddPrayer({ subcategory, refetch, closeModal }) {
                   <Field
                     name="subcategory"
                     className="form-control"
+                    value={subcategory?.name || ""}
                     disabled
-                    placeholder={subcategory?.name}
                   />
                 </div>
 
@@ -89,11 +89,7 @@ function AddPrayer({ subcategory, refetch, closeModal }) {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="btn"
-                disabled={loading}
-              >
+              <button type="submit" className="btn" disabled={loading}>
                 {loading ? (
                   <>
                     <span

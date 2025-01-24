@@ -108,14 +108,29 @@ body {
   color: #4b1719;
   border-radius: 8px;
   padding: 6px 12px;
-  font-size: 14px;
-  font-weight: 500;
   transition: all 0.3s ease;
   background-color: transparent;
   cursor: pointer;
 }
 
 .delete-btn:hover {
+  background-color: #4b1719;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.prayer-btn {
+  background-color: #ffffff;
+  color: #4b1719;
+  border: 2px solid #4b1719;
+  border-radius: 8px;
+  padding: 6px 12px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.prayer-btn:hover {
   background-color: #4b1719;
   color: #ffffff;
   transform: scale(1.05);

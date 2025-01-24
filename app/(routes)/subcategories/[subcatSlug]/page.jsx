@@ -1,5 +1,6 @@
 "use client";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
+import AddPrayer from "@/forms/prayers/AddPrayer";
 import UpdateSubcategory from "@/forms/subcategories/UpdateSubcategory";
 import { useFetchCategories } from "@/hooks/categories/actions";
 import { useFetchSubcategoryDetail } from "@/hooks/subcategories/actions";
@@ -14,9 +15,13 @@ function SubcategoryDetail({ params }) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
   const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleShut = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
 
   const {
     isLoading: isLoadingSubcategory,
@@ -65,6 +70,9 @@ function SubcategoryDetail({ params }) {
         <h5 className="dash-text">{subcategory?.name}</h5>
 
         <div className="d-flex gap-2">
+          <button className="prayer-btn" onClick={handleOpen}>
+            New Prayer
+          </button>
           <button className="btn" onClick={handleShow}>
             Update
           </button>
@@ -86,8 +94,14 @@ function SubcategoryDetail({ params }) {
         </div>
       </section>
 
-      {/* modal */}
-      <Modal show={show} onHide={handleClose} dialogClassName="modal-dialog">
+      <section className="mb-3 row"></section>
+
+      {/* modal to update subcategory */}
+      <Modal
+        show={show}
+        onHide={handleClose}
+        dialogClassName="modal-dialog modal-dialog-centered"
+      >
         <div className="modal-header">
           <h5 className="modal-title">
             Update Subcategory: {subcategory?.name}
@@ -104,6 +118,31 @@ function SubcategoryDetail({ params }) {
             categories={categories}
             refetch={refetchSubcategory}
             closeModal={handleClose}
+          />
+        </div>
+      </Modal>
+      {/* end of modal */}
+
+      {/* modal to add new prayer */}
+      <Modal
+        show={open}
+        onHide={handleShut}
+        dialogClassName="modal-dialog modal-dialog-centered"
+      >
+        <div className="modal-header">
+          <h5 className="modal-title">New Prayer</h5>
+          <button
+            type="button"
+            className="btn-close"
+            onClick={handleShut}
+          ></button>
+        </div>
+
+        <div className="modal-body">
+          <AddPrayer
+            refetch={refetchSubcategory}
+            closeModal={handleShut}
+            subcategory={subcategory}
           />
         </div>
       </Modal>
