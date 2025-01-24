@@ -26,7 +26,7 @@ function AddCategory({ refetch, closeModal }) {
             closeModal();
           } catch (error) {
             if (error?.response?.data?.name) {
-              toast.error(error?.response?.data?.name[0]);
+              toast.error("Category name already exists!");
             } else {
               toast.error("Something went wrong!");
             }
@@ -42,25 +42,36 @@ function AddCategory({ refetch, closeModal }) {
                 <label htmlFor="name" className="form-label">
                   Category Name
                 </label>
-                <Field type="text" name="name" className="form-control" />
+                <Field
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  placeholder="Category Name"
+                />
               </div>
 
               <div className="mb-3">
                 <label htmlFor="position" className="form-label">
-                  Position
+                  Category Position
                 </label>
-                <Field type="number" name="position" className="form-control" />
+                <Field
+                  type="number"
+                  name="position"
+                  className="form-control"
+                  placeholder="1"
+                />
               </div>
 
               <div className="mb-3">
                 <label htmlFor="description" className="form-label">
-                  Description
+                  Category Description
                 </label>
                 <Field
                   as="textarea"
                   type="text"
                   name="description"
                   className="form-control"
+                  placeholder="Category Description"
                 />
               </div>
 

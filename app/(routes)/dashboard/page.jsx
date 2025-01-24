@@ -1,12 +1,14 @@
 "use client";
+import CategorySection from "@/components/categories/CategorySection";
 import DataCard from "@/components/dashboard/DataCard";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import AddDailyVerse from "@/forms/AddDailyVerse";
 import { useFetchAccount, useFetchUsers } from "@/hooks/accounts/actions";
+import { useFetchCategories } from "@/hooks/categories/actions";
 import { useFetchDailyVerses } from "@/hooks/dailyverse/dailyverse";
 import { useFetchReports } from "@/hooks/reports/actions";
 import DailyVerseTable from "@/tables/DailyVerseTable";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
 function Dashboard() {
@@ -40,11 +42,18 @@ function Dashboard() {
     refetch: refetchReports,
   } = useFetchReports();
 
+  const {
+    isLoading: isLoadingCategories,
+    data: categories,
+    refetch: refetchCategories,
+  } = useFetchCategories();
+
   if (
     isLoadingAccount ||
     isLoadingDailyVerses ||
     isLoadingUsers ||
-    isLoadingReports
+    isLoadingReports ||
+    isLoadingCategories
   )
     return <LoadingSpinner />;
 
@@ -74,7 +83,7 @@ function Dashboard() {
 
       <section className="card mb-3">
         <div className="mb-3 d-flex flex-row flex-md-row justify-content-between align-items-start align-items-md-center card-header bg-white">
-          <h5>Daily Verses</h5>
+          <h5 className="dash-text">Daily Verses</h5>
 
           <div>
             <button className="btn btn-connect btn-sm" onClick={handleShow}>
@@ -117,6 +126,8 @@ function Dashboard() {
           )}
         </div>
       </section>
+
+      <CategorySection categories={categories} refetchCategories={refetchCategories} />
     </div>
   );
 }

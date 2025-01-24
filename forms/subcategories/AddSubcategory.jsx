@@ -27,7 +27,7 @@ function AddSubcategory({ category, refetch, closeModal }) {
             closeModal();
           } catch (error) {
             if (error?.response?.data?.name) {
-              toast.error(error?.response?.data?.name[0]);
+              toast.error("Subcategory name already exists!");
             } else {
               toast.error("Something went wrong!");
             }
