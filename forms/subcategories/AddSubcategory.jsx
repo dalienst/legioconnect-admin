@@ -22,14 +22,14 @@ function AddSubcategory({ category, refetch, closeModal }) {
           setLoading(true);
           try {
             await createSubcategory(values, axios);
-            toast.success("Subcategory created successfully!");
+            toast?.success("Subcategory created successfully!");
             refetch();
             closeModal();
           } catch (error) {
             if (error?.response?.data?.name) {
-              toast.error("Subcategory name already exists!");
+              toast?.error("Subcategory name already exists!");
             } else {
-              toast.error("Something went wrong!");
+              toast?.error("Something went wrong!");
             }
           } finally {
             setLoading(false);
