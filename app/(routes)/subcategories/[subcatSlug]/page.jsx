@@ -66,31 +66,55 @@ function SubcategoryDetail({ params }) {
         </ol>
       </nav>
 
-      <section className="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+      <section className="mb-3 d-flex justify-content-between align-items-center">
         <h5 className="dash-text">{subcategory?.name}</h5>
 
         <div className="d-flex gap-2">
           <button className="prayer-btn" onClick={handleOpen}>
             New Prayer
           </button>
-          <button className="btn" onClick={handleShow}>
-            Update
-          </button>
-          <button
-            className="delete-btn"
-            disabled={deleting}
-            onClick={handleDelete}
-          >
-            {deleting ? (
-              <span
-                className="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-            ) : (
-              "Delete"
-            )}
-          </button>
+
+          {/* Dropdown */}
+          <div className="btn-group">
+            <button
+              type="button"
+              className="drop-btn border-0"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+            >
+              <i className="bi bi-three-dots"></i>
+            </button>
+            <ul className="dropdown-menu dropdown-menu-lg-end">
+              <li>
+                <button
+                  className="dropdown-item "
+                  type="button"
+                  onClick={handleShow}
+                >
+                  Update
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item text-danger"
+                  type="button"
+                  disabled={deleting}
+                  onClick={handleDelete}
+                >
+                  {deleting ? (
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  ) : (
+                    "Delete"
+                  )}
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 

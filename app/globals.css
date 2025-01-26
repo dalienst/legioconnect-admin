@@ -107,7 +107,7 @@ body {
   border: 1px solid #4b1719;
   color: #4b1719;
   border-radius: 8px;
-  padding: 6px 12px;
+  padding: 6px 10px;
   transition: all 0.3s ease;
   background-color: transparent;
   cursor: pointer;
@@ -124,7 +124,7 @@ body {
   color: #4b1719;
   border: 2px solid #4b1719;
   border-radius: 8px;
-  padding: 6px 12px;
+  padding: 2px;
   transition: all 0.3s ease;
   background-color: transparent;
   cursor: pointer;
@@ -135,3 +135,29 @@ body {
   color: #ffffff;
   transform: scale(1.05);
 }
+
+/* Dropdown button styling */
+.drop-btn {
+  background-color: white;
+  /* border: 1px solid #4b1719; */
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* .drop-btn i {
+  color: #4b1719;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+} */
+
+/* Hover effect for the dropdown button */
+/* .drop-btn:hover {
+  background-color: #4b1719;
+  border-color: #4b1719;
+  color: #ffffff;
+} */
+
