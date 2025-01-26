@@ -1,7 +1,22 @@
 "use client";
-import React from "react";
+import UpdatePrayer from "@/forms/prayers/UpdatePrayer";
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
 
-function SubcategoriesPrayerDisplay({ subcategory}) {
+function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
+  const [show, setShow] = useState(false);
+  const [selectedPrayer, setSelectedPrayer] = useState(null);
+
+  const handleShow = (prayer) => {
+    setSelectedPrayer(prayer);
+    setShow(true);
+  };
+
+  const handleClose = () => {
+    setSelectedPrayer(null);
+    setShow(false);
+  };
+
   return (
     <>
       <h6>Prayers</h6>
@@ -12,6 +27,12 @@ function SubcategoriesPrayerDisplay({ subcategory}) {
               <div className="card-body">
                 <h5 className="card-title">{prayer?.title}</h5>
                 <p className="card-text">{prayer?.content}</p>
+                <button
+                  className="btn btn-sm"
+                  onClick={() => handleShow(prayer)}
+                >
+                  Update Prayer
+                </button>
               </div>
             </div>
           ))}
@@ -21,6 +42,36 @@ function SubcategoriesPrayerDisplay({ subcategory}) {
           <i className="bi bi-info-circle me-2"></i>
           No prayers found
         </div>
+      )}
+
+      {/* Modal for updating prayer */}
+      {selectedPrayer && (
+        <Modal
+          show={show}
+          onHide={handleClose}
+          dialogClassName="modal-dialog modal-dialog-scrollable"
+        >
+          <div className="modal-header">
+            <h5 className="modal-title">
+              Update Prayer: {selectedPrayer?.title}
+            </h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={handleClose}
+            ></button>
+          </div>
+
+          <div className="modal-body">
+            <UpdatePrayer
+              slug={selectedPrayer?.slug}
+              subcategory={selectedPrayer?.subcategory}
+              prayer={selectedPrayer}
+              refetch={refetchSubcategory}
+              closeModal={handleClose}
+            />
+          </div>
+        </Modal>
       )}
     </>
   );

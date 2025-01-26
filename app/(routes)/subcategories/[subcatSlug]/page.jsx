@@ -120,7 +120,10 @@ function SubcategoryDetail({ params }) {
       </section>
 
       <section className="mb-3">
-        <SubcategoriesPrayerDisplay subcategory={subcategory} />
+        <SubcategoriesPrayerDisplay
+          subcategory={subcategory}
+          refetchSubcategory={refetchSubcategory}
+        />
       </section>
 
       {/* modal to update subcategory */}

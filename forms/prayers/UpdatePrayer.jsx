@@ -58,6 +58,13 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
                   checked={values.is_public}
                   onChange={(e) => setFieldValue("is_public", e.target.checked)}
                 />
+                <label
+                  className="form-check-label"
+                  htmlFor="is_public"
+                  style={{ cursor: "pointer" }}
+                >
+                  Make Public
+                </label>
               </div>
               <div className="row">
                 <div className="col-md-6 col-sm-12 mb-3">
