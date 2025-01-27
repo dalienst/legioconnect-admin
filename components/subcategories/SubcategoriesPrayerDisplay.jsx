@@ -65,7 +65,7 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
           <div className="modal-body">
             <UpdatePrayer
               slug={selectedPrayer?.slug}
-              subcategory={selectedPrayer?.subcategory}
+              subcategory={subcategory}
               prayer={selectedPrayer}
               refetch={refetchSubcategory}
               closeModal={handleClose}

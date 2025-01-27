@@ -14,7 +14,7 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
     <>
       <Formik
         initialValues={{
-          subcategory: subcategory?.reference,
+          subcategory: subcategory?.reference || "",
           is_public: prayer?.is_public || true,
           title: prayer?.title || "",
           purpose: prayer?.purpose || "",
@@ -72,8 +72,8 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
                   <Field
                     name="subcategory"
                     className="form-control"
+                    value={prayer?.subcategory_detail || ""}
                     disabled
-                    placeholder={subcategory?.name}
                   />
                 </div>
 
@@ -117,11 +117,7 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="btn"
-                disabled={loading}
-              >
+              <button type="submit" className="btn" disabled={loading}>
                 {loading ? (
                   <>
                     <span
