@@ -1,5 +1,6 @@
 "use client";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
+import SubcategoriesPrayerDisplay from "@/components/subcategories/SubcategoriesPrayerDisplay";
 import AddPrayer from "@/forms/prayers/AddPrayer";
 import UpdateSubcategory from "@/forms/subcategories/UpdateSubcategory";
 import { useFetchCategories } from "@/hooks/categories/actions";
@@ -66,53 +67,63 @@ function SubcategoryDetail({ params }) {
         </ol>
       </nav>
 
-      <section className="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+      <section className="mb-3 d-flex justify-content-between align-items-center">
         <h5 className="dash-text">{subcategory?.name}</h5>
 
         <div className="d-flex gap-2">
           <button className="prayer-btn" onClick={handleOpen}>
             New Prayer
           </button>
-          <button className="btn" onClick={handleShow}>
-            Update
-          </button>
-          <button
-            className="delete-btn"
-            disabled={deleting}
-            onClick={handleDelete}
-          >
-            {deleting ? (
-              <span
-                className="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-            ) : (
-              "Delete"
-            )}
-          </button>
+
+          {/* Dropdown */}
+          <div className="btn-group">
+            <button
+              type="button"
+              className="drop-btn border-0"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+            >
+              <i className="bi bi-three-dots"></i>
+            </button>
+            <ul className="dropdown-menu dropdown-menu-lg-end">
+              <li>
+                <button
+                  className="dropdown-item "
+                  type="button"
+                  onClick={handleShow}
+                >
+                  Update
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item text-danger"
+                  type="button"
+                  disabled={deleting}
+                  onClick={handleDelete}
+                >
+                  {deleting ? (
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  ) : (
+                    "Delete"
+                  )}
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section className="mb-3">
-        <h6>Prayers</h6>
-        {subcategory?.prayers && subcategory?.prayers?.length > 0 ? (
-          <>
-            {subcategory?.prayers?.map((prayer) => (
-              <div className="card mb-3" key={prayer?.id}>
-                <div className="card-body">
-                  <h5 className="card-title">{prayer?.title}</h5>
-                  <p className="card-text">{prayer?.content}</p>
-                </div>
-              </div>
-            ))}
-          </>
-        ) : (
-          <div className="alert alert-info">
-            <i className="bi bi-info-circle me-2"></i>
-            No prayers found
-          </div>
-        )}
+        <SubcategoriesPrayerDisplay
+          subcategory={subcategory}
+          refetchSubcategory={refetchSubcategory}
+        />
       </section>
 
       {/* modal to update subcategory */}
