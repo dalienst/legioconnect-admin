@@ -25,7 +25,15 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
           {subcategory?.prayers?.map((prayer) => (
             <div className="card mb-3" key={prayer?.id}>
               <div className="card-body">
-                <h5 className="card-title">{prayer?.title}</h5>
+                <div className="d-flex justify-content-between align-items-center">
+                  <h5 className="card-title">{prayer?.title}</h5>
+                  <span
+                    className="badge bg-secondary rounded-pill"
+                    style={{ fontSize: "0.9rem" }}
+                  >
+                    {prayer?.position || "N/A"}
+                  </span>
+                </div>
                 <p className="card-text">{prayer?.content}</p>
                 <button
                   className="btn btn-sm"

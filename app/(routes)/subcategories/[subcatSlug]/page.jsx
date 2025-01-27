@@ -76,7 +76,7 @@ function SubcategoryDetail({ params }) {
           </button>
 
           {/* Dropdown */}
-          <div className="btn-group">
+          <div className="btn-group dropstart">
             <button
               type="button"
               className="drop-btn border-0"
