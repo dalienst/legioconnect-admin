@@ -15,7 +15,7 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
       <Formik
         initialValues={{
           subcategory: subcategory?.reference || "",
-          is_public: prayer?.is_public || true,
+          // is_public: prayer?.is_public || true,
           title: prayer?.title || "",
           purpose: prayer?.purpose || "",
           position: prayer?.position || "",
@@ -23,12 +23,11 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
         }}
         onSubmit={async (values) => {
           setLoading(true);
-
           try {
             const formData = new FormData();
 
             formData.append("subcategory", values.subcategory);
-            formData.append("is_public", values.is_public);
+            // formData.append("is_public", values.is_public);
             formData.append("title", values.title);
             formData.append("purpose", values.purpose);
             formData.append("position", values.position);
@@ -48,24 +47,26 @@ function UpdatePrayer({ slug, subcategory, prayer, refetch, closeModal }) {
         {({ values, setFieldValue }) => (
           <>
             <Form>
-              <div className="form-check form-switch mb-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  id="is_public"
-                  name="is_public"
-                  checked={values.is_public}
-                  onChange={(e) => setFieldValue("is_public", e.target.checked)}
-                />
-                <label
-                  className="form-check-label"
-                  htmlFor="is_public"
-                  style={{ cursor: "pointer" }}
-                >
-                  Make Public
+              {/* <div className="form-check form-switch mb-3">
+                <Field name="is_public">
+                  {({ field, form }) => (
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="is_public"
+                      checked={field?.value}
+                      onChange={(e) =>
+                        form.setFieldValue("is_public", e.target.checked)
+                      }
+                    />
+                  )}
+                </Field>
+                <label className="form-check-label" htmlFor="is_public">
+                  Public
                 </label>
-              </div>
+              </div> */}
+
               <div className="row">
                 <div className="col-md-6 col-sm-12 mb-3">
                   <label className="form-label">Subcategory</label>
