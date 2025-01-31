@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="navbar sticky-top navbar-expand-md navbar-style mb-3 shadow">
+    <nav className="navbar sticky-top navbar-expand-md navbar-style mb-3 shadow rounded">
       <div className="container-fluid">
         <Link href="/dashboard" className="navbar-brand text-white fw-bold">
           LegioConnect
