@@ -1,13 +1,18 @@
 "use client";
 import UpdatePrayer from "@/forms/prayers/UpdatePrayer";
+import useAxiosAuth from "@/hooks/useAxiosAuth";
+import { deletePrayer } from "@/services/prayers";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Toast from "react-bootstrap/Toast";
+import toast from "react-hot-toast";
 
 function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
   const [show, setShow] = useState(false);
   const [selectedPrayer, setSelectedPrayer] = useState(null);
   const [open, setOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const axios = useAxiosAuth()
 
   const handleShow = (prayer) => {
     setSelectedPrayer(prayer);
@@ -17,6 +22,20 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
   const handleClose = () => {
     setSelectedPrayer(null);
     setShow(false);
+  };
+
+  const handleDelete = async (slug) => {
+    setDeleting(true);
+    try {
+      await deletePrayer(slug, axios);
+      toast.success("Prayer deleted successfully");
+      refetchSubcategory();
+    } catch (error) {
+      console.log(error);
+      toast.error("Error deleting prayer");
+    } finally {
+      setDeleting(false);
+    }
   };
 
   return (
@@ -63,6 +82,13 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
                   onClick={() => handleShow(prayer)}
                 >
                   Update Prayer
+                </button>
+                <button
+                  className="btn btn-danger btn-sm ms-2"
+                  onClick={() => handleDelete(prayer?.slug)}
+                >
+                  <i className="bi bi-trash"></i>
+                  {deleting ? "Deleting..." : "Delete"}
                 </button>
               </div>
             </div>
