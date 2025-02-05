@@ -43,6 +43,19 @@ export default function Navbar() {
               </Link>
             </li>
 
+            <li className="nav-item ">
+              <Link
+                href="/kitapLemo"
+                className={`${
+                  pathname === "/kitapLemo"
+                    ? "nav-link text-info"
+                    : "nav-link  text-white"
+                }`}
+              >
+                KitapLemo
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link
                 href="/users"
