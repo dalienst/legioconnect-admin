@@ -11,7 +11,7 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
   const [show, setShow] = useState(false);
   const [selectedPrayer, setSelectedPrayer] = useState(null);
   const [open, setOpen] = useState(false);
-  const [deleting, setDeleting] = useState(false);
+  const [deleting, setDeleting] = useState({});
   const axios = useAxiosAuth()
 
   const handleShow = (prayer) => {
@@ -25,7 +25,8 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
   };
 
   const handleDelete = async (slug) => {
-    setDeleting(true);
+    setDeleting((prev) => ({ ...prev, [slug]: true })); // Set only the clicked prayer to deleting
+
     try {
       await deletePrayer(slug, axios);
       toast.success("Prayer deleted successfully");
@@ -34,9 +35,10 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
       console.log(error);
       toast.error("Error deleting prayer");
     } finally {
-      setDeleting(false);
+      setDeleting((prev) => ({ ...prev, [slug]: false })); // Reset only the clicked prayer
     }
   };
+
 
   return (
     <>
@@ -86,9 +88,10 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
                 <button
                   className="btn btn-danger btn-sm ms-2"
                   onClick={() => handleDelete(prayer?.slug)}
+                  disabled={deleting[prayer?.slug]}
                 >
                   <i className="bi bi-trash"></i>
-                  {deleting ? "Deleting..." : "Delete"}
+                  {deleting[prayer?.slug] ? "Deleting..." : "Delete"}
                 </button>
               </div>
             </div>
