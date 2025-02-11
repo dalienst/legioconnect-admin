@@ -56,6 +56,19 @@ export default function Navbar() {
               </Link>
             </li>
 
+            <li className="nav-item ">
+              <Link
+                href="/dailymass"
+                className={`${
+                  pathname === "/dailymass"
+                    ? "nav-link text-info"
+                    : "nav-link  text-white"
+                }`}
+              >
+                Daily Mass
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link
                 href="/users"
