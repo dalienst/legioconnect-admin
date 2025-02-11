@@ -37,7 +37,9 @@ function DailyMass() {
         </div>
       </section>
 
-      <section className="mb-3"></section>
+      <section className="mb-3">
+        <p>Display mass</p>
+      </section>
     </div>
   );
 }
