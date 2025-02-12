@@ -2,9 +2,15 @@
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { useFetchDailyMass } from "@/hooks/dailymass/actions";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
 
 function DailyMass() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const {
     isLoading: isLoadingDailyMass,
     data: dailyMass,
@@ -33,7 +39,27 @@ function DailyMass() {
         </div>
 
         <div>
-          <button className="btn btn-connect btn-sm">Create</button>
+          <button className="btn btn-connect btn-sm" onClick={handleShow}>
+            Create
+          </button>
+
+          {/* Modal for creating daily mass */}
+          <Modal
+            show={show}
+            onHide={handleClose}
+            dialogClassName="modal-dialog modal-fullscreen"
+          >
+            <div className="modal-header">
+              <h5 className="modal-title">Create Daily Mass</h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={handleClose}
+              ></button>
+            </div>
+
+            <div className="modal-body">hello</div>
+          </Modal>
         </div>
       </section>
 
