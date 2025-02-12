@@ -11,7 +11,7 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
   const axios = useAxiosAuth();
 
   return (
-    <div className="container">
+    <div className="container py-3">
       <Formik
         initialValues={{
           title: "",
@@ -22,8 +22,6 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
           responsorial_psalm: "",
           reading_two: "",
           reading_two_text: "",
-          alleluia: "",
-          alleluia_text: "",
           gospel: "",
           gospel_text: "",
         }}
@@ -73,56 +71,118 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
             </div>
 
             {/* Reading One*/}
-            <div className="mb-3 col-md-6 col-sm-12">
-              <label htmlFor="reading_one" className="form-label fw-semibold">
-                Reading One
-              </label>
-              <Field
-                className="form-control"
-                name="reading_one"
-                placeholder="Genesis 2:4b-9, 15-17"
-              />
+            <div>
+              <div className="mb-3 col-md-6 col-sm-12">
+                <label htmlFor="reading_one" className="form-label fw-semibold">
+                  Reading One
+                </label>
+                <Field
+                  className="form-control"
+                  name="reading_one"
+                  placeholder="Genesis 2:4b-9, 15-17"
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label fw-semibold">
+                  Reading One Text
+                </label>
+                <TextEditor
+                  value={values.reading_one_text}
+                  onModelChange={(content) =>
+                    setFieldValue("reading_one_text", content)
+                  }
+                />
+              </div>
             </div>
-            <div className="mb-3">
-              <label className="form-label fw-semibold">Reading One Text</label>
-              <TextEditor
-                value={values.reading_one_text}
-                onModelChange={(content) =>
-                  setFieldValue("reading_one_text", content)
-                }
-                
-              />
+
+            {/* Psalms */}
+            <div>
+              <div className="mb-3 col-md-6 col-sm-12">
+                <label htmlFor="psalm" className="form-label fw-semibold">
+                  Psalm
+                </label>
+                <Field
+                  className="form-control"
+                  name="psalm"
+                  placeholder="Psalm 1"
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="responsorial_psalm" className="form-label">
+                  Responsorial Psalm
+                </label>
+                <TextEditor
+                  value={values?.responsorial_psalm}
+                  onModelChange={(content) =>
+                    setFieldValue("responsorial_psalm", content)
+                  }
+                />
+              </div>
             </div>
 
             {/* Reading Two Text */}
             <div>
-              <label>Reading Two Text</label>
-              <TextEditor
-                value={values.reading_two_text}
-                onModelChange={(content) =>
-                  setFieldValue("reading_two_text", content)
-                }
-              />
+              <div className="mb-3 col-md-6 col-sm-12">
+                <label htmlFor="reading_two" className="form-label fw-semibold">
+                  Reading Two
+                </label>
+                <Field
+                  className="form-control"
+                  name="reading_two"
+                  placeholder="Genesis 2:4b-9, 15-17"
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label fw-semibold">
+                  Reading Two Text
+                </label>
+                <TextEditor
+                  value={values.reading_two_text}
+                  onModelChange={(content) =>
+                    setFieldValue("reading_two_text", content)
+                  }
+                  className="form-control"
+                />
+              </div>
             </div>
 
             {/* Gospel Text */}
             <div>
-              <label>Gospel Text</label>
-              <TextEditor
-                value={values.gospel_text}
-                onModelChange={(content) =>
-                  setFieldValue("gospel_text", content)
-                }
-              />
+              <div className="mb-3 col-md-6 col-sm-12">
+                <label htmlFor="gospel" className="form-label fw-semibold">
+                  Gospel
+                </label>
+                <Field
+                  className="form-control"
+                  name="gospel"
+                  placeholder="John 3:16"
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label fw-semibold">Gospel Text</label>
+                <TextEditor
+                  value={values.gospel_text}
+                  onModelChange={(content) =>
+                    setFieldValue("gospel_text", content)
+                  }
+                />
+              </div>
             </div>
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              {loading ? "Submitting..." : "Create Daily Mass"}
+            <button type="submit" className="btn" disabled={loading}>
+              {loading ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                  />
+                  Creating...
+                </>
+              ) : (
+                "Create"
+              )}
             </button>
           </Form>
         )}
