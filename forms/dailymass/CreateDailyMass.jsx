@@ -50,28 +50,47 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
           <Form>
             <div className="row">
               <div className="mb-3 col-md-6 col-sm-12">
-                <label htmlFor="lectionary" className="form-label">
+                <label htmlFor="lectionary" className="form-label fw-semibold">
                   Lectionary
                 </label>
-                <Field className="form-control" name="lectionary" />
+                <Field
+                  className="form-control"
+                  name="lectionary"
+                  placeholder="Lectionary: 331"
+                />
               </div>
-              {/* Title */}
+
               <div className="mb-3 col-md-6 col-sm-12">
-                <label htmlFor="title" className="form-label">
+                <label htmlFor="title" className="form-label fw-semibold">
                   Title
                 </label>
-                <Field className="form-control" name="title" />
+                <Field
+                  className="form-control"
+                  name="title"
+                  placeholder="Wednesday of the Fifth Week in Ordinary Time"
+                />
               </div>
             </div>
 
-            {/* Reading One Text */}
-            <div>
-              <label>Reading One Text</label>
+            {/* Reading One*/}
+            <div className="mb-3 col-md-6 col-sm-12">
+              <label htmlFor="reading_one" className="form-label fw-semibold">
+                Reading One
+              </label>
+              <Field
+                className="form-control"
+                name="reading_one"
+                placeholder="Genesis 2:4b-9, 15-17"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Reading One Text</label>
               <TextEditor
                 value={values.reading_one_text}
                 onModelChange={(content) =>
                   setFieldValue("reading_one_text", content)
                 }
+                
               />
             </div>
 
