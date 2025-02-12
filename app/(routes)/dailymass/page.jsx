@@ -1,5 +1,6 @@
 "use client";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
+import CreateDailyMass from "@/forms/dailymass/CreateDailyMass";
 import { useFetchDailyMass } from "@/hooks/dailymass/actions";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -58,7 +59,9 @@ function DailyMass() {
               ></button>
             </div>
 
-            <div className="modal-body">hello</div>
+            <div className="modal-body">
+              <CreateDailyMass refetchDailyMass={refetchDailyMass} />
+            </div>
           </Modal>
         </div>
       </section>
