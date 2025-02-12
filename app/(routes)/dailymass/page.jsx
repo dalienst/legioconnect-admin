@@ -60,7 +60,10 @@ function DailyMass() {
             </div>
 
             <div className="modal-body">
-              <CreateDailyMass refetchDailyMass={refetchDailyMass} />
+              <CreateDailyMass
+                refetchDailyMass={refetchDailyMass}
+                closeModal={handleClose}
+              />
             </div>
           </Modal>
         </div>
