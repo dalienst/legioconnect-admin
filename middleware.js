@@ -9,5 +9,8 @@ export const config = {
     "/deletion-requests/:path*",
     "/verses/:path*",
     "/subcategories/:path*",
+    "/categories/:path*",
+    "/prayers/:path*",
+    "/dailymass/:path*",
   ],
 };
