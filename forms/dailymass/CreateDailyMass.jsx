@@ -32,7 +32,7 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
             const formData = new FormData();
 
             formData.append("title", values.title);
-            formData.append("mass_date", values.mass_date); // Ensure mass_date is appended
+            formData.append("mass_date", values.mass_date);
             formData.append("lectionary", values.lectionary);
             formData.append("reading_one", values.reading_one);
             formData.append("reading_one_text", values.reading_one_text);
@@ -42,8 +42,6 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
             formData.append("reading_two_text", values.reading_two_text);
             formData.append("gospel", values.gospel);
             formData.append("gospel_text", values.gospel_text);
-
-            console.log([...formData.entries()]);
 
             await createDailyMass(formData, axios);
             toast.success("Daily Mass created successfully!");

@@ -1,10 +1,13 @@
 "use client";
 
-import { apiActions } from "@/tools/api";
+import { apiMultipartActions } from "@/tools/api";
 
 export const getDailyMass = async (axios) => {
   try {
-    const response = await apiActions?.get(`/api/dailymassreading/`, axios);
+    const response = await apiMultipartActions?.get(
+      `/api/dailymassreading/`,
+      axios
+    );
     return response?.data?.results || [];
   } catch (error) {
     throw new Error("Failed to fetch daily mass readings");
@@ -12,7 +15,7 @@ export const getDailyMass = async (axios) => {
 };
 
 export const getDailyMassDetail = async (slug, axios) => {
-  const response = await apiActions?.get(
+  const response = await apiMultipartActions?.get(
     `/api/dailymassreading/${slug}/`,
     axios
   );
@@ -20,13 +23,27 @@ export const getDailyMassDetail = async (slug, axios) => {
 };
 
 export const createDailyMass = async (formData, axios) => {
-  await apiActions?.post(`/api/dailymassreading/`, formData, axios);
+  try {
+    const response = await apiMultipartActions?.post(
+      `/api/dailymassreading/`,
+      formData,
+      axios
+    );
+    console.log(response?.data);
+    return response?.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const updateDailyMass = async (slug, formData, axios) => {
-  await apiActions?.patch(`/api/dailymassreading/${slug}/`, formData, axios);
+  await apiMultipartActions?.patch(
+    `/api/dailymassreading/${slug}/`,
+    formData,
+    axios
+  );
 };
 
 export const deleteDailyMass = async (slug, axios) => {
-  await apiActions?.delete(`/api/dailymassreading/${slug}/`, axios);
+  await apiMultipartActions?.delete(`/api/dailymassreading/${slug}/`, axios);
 };
