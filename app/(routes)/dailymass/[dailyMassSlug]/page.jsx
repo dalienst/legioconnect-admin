@@ -13,7 +13,6 @@ function DailyMassDetail({ params }) {
     refetch: refetchDailyMass,
   } = useFetchDailyMassDetail(dailyMassSlug?.dailyMassSlug);
 
-  console.log(dailymass);
 
   if (isLoadingDailyMass) return <LoadingSpinner />;
 
