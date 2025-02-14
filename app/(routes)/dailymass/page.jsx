@@ -18,7 +18,7 @@ function DailyMass() {
     refetch: refetchDailyMass,
   } = useFetchDailyMass();
 
-  console.log(dailymass)
+  // console.log(dailymass)
 
   if (isLoadingDailyMass) return <LoadingSpinner />;
 

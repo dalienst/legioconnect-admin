@@ -15,6 +15,7 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
       <Formik
         initialValues={{
           title: "",
+          mass_date: "",
           lectionary: "",
           reading_one: "",
           reading_one_text: "",
@@ -29,9 +30,20 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
           setLoading(true);
           try {
             const formData = new FormData();
-            Object.entries(values).forEach(([key, value]) => {
-              formData.append(key, value);
-            });
+
+            formData.append("title", values.title);
+            formData.append("mass_date", values.mass_date); // Ensure mass_date is appended
+            formData.append("lectionary", values.lectionary);
+            formData.append("reading_one", values.reading_one);
+            formData.append("reading_one_text", values.reading_one_text);
+            formData.append("psalm", values.psalm);
+            formData.append("responsorial_psalm", values.responsorial_psalm);
+            formData.append("reading_two", values.reading_two);
+            formData.append("reading_two_text", values.reading_two_text);
+            formData.append("gospel", values.gospel);
+            formData.append("gospel_text", values.gospel_text);
+
+            console.log([...formData.entries()]);
 
             await createDailyMass(formData, axios);
             toast.success("Daily Mass created successfully!");
@@ -47,18 +59,7 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
         {({ setFieldValue, values }) => (
           <Form>
             <div className="row">
-              <div className="mb-3 col-md-6 col-sm-12">
-                <label htmlFor="lectionary" className="form-label fw-semibold">
-                  Lectionary
-                </label>
-                <Field
-                  className="form-control"
-                  name="lectionary"
-                  placeholder="Lectionary: 331"
-                />
-              </div>
-
-              <div className="mb-3 col-md-6 col-sm-12">
+              <div className="mb-3 col-md-4 col-sm-12">
                 <label htmlFor="title" className="form-label fw-semibold">
                   Title
                 </label>
@@ -66,6 +67,31 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
                   className="form-control"
                   name="title"
                   placeholder="Wednesday of the Fifth Week in Ordinary Time"
+                />
+              </div>
+
+              <div className="mb-3 col-md-4 col-sm-12">
+                <label htmlFor="mass_date" className="form-label">
+                  Mass Date
+                </label>
+                <input
+                  type="date"
+                  name="mass_date"
+                  id="mass_date"
+                  className="form-control"
+                  value={values.mass_date} // Bind value to Formik state
+                  onChange={(e) => setFieldValue("mass_date", e.target.value)}
+                />
+              </div>
+
+              <div className="mb-3 col-md-4 col-sm-12">
+                <label htmlFor="lectionary" className="form-label fw-semibold">
+                  Lectionary
+                </label>
+                <Field
+                  className="form-control"
+                  name="lectionary"
+                  placeholder="Lectionary: 331"
                 />
               </div>
             </div>
