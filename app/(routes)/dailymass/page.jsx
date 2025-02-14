@@ -1,4 +1,5 @@
 "use client";
+import DailyMassDisplay from "@/components/dailymass/DailyMassDisplay";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import CreateDailyMass from "@/forms/dailymass/CreateDailyMass";
 import { useFetchDailyMass } from "@/hooks/dailymass/actions";
@@ -18,7 +19,7 @@ function DailyMass() {
     refetch: refetchDailyMass,
   } = useFetchDailyMass();
 
-  // console.log(dailymass)
+  console.log(dailymass);
 
   if (isLoadingDailyMass) return <LoadingSpinner />;
 
@@ -72,7 +73,15 @@ function DailyMass() {
       </section>
 
       <section className="mb-3">
-        <p>Display mass</p>
+        {dailymass?.length > 0 ? (
+          <>
+            <DailyMassDisplay dailymass={dailymass} />
+          </>
+        ) : (
+          <div className="alert alert-info" role="alert">
+            No daily mass available.
+          </div>
+        )}
       </section>
     </div>
   );
