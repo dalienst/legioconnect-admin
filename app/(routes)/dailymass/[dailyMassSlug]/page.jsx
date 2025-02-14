@@ -19,6 +19,7 @@ function DailyMassDetail({ params }) {
 
   return (
     <div>
+      {/* Breadcrumb Navigation */}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -30,15 +31,16 @@ function DailyMassDetail({ params }) {
         </ol>
       </nav>
 
+      {/* Title Section */}
       <section className="mb-3">
         <h1 className="text-center">{dailymass?.title}</h1>
       </section>
 
+      {/* Lectionary and Date Section */}
       <section className="mb-3 d-flex flex-row flex-md-row justify-content-between align-items-start align-items-md-center">
         <div>
           <p>{dailymass?.lectionary}</p>
         </div>
-
         <div>
           <p>{dailymass?.mass_date}</p>
         </div>
@@ -111,6 +113,30 @@ function DailyMassDetail({ params }) {
           <div dangerouslySetInnerHTML={{ __html: dailymass.gospel_text }} />
         )}
       </section>
+
+      {/* Floating Action Button (FAB) for Update */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          zIndex: 1000,
+        }}
+      >
+        <Link
+          href={`/dailymass/${dailyMassSlug?.dailyMassSlug}/edit`}
+          className="btn btn-primary btn-lg rounded-circle shadow"
+          style={{
+            width: "60px",
+            height: "60px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <i className="bi bi-pencil"></i>
+        </Link>
+      </div>
     </div>
   );
 }
