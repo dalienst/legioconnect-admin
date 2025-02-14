@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { useFetchDailyMassDetail } from "@/hooks/dailymass/actions";
 import { updateDailyMass } from "@/services/dailymass";
+import Link from "next/link";
 
 function EditDailyMass({ params }) {
   const dailyMassSlug = use(params);
@@ -23,6 +24,21 @@ function EditDailyMass({ params }) {
 
   return (
     <div className="container py-3">
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link href="/dailymass">Daily Mass</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link href={`/dailymass/${dailymass?.slug}`}>
+              {dailymass?.lectionary}
+            </Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Update
+          </li>
+        </ol>
+      </nav>
       <Formik
         initialValues={{
           title: dailymass?.title || "",
