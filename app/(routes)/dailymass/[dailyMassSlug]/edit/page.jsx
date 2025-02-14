@@ -6,19 +6,35 @@ import React, { use, useState } from "react";
 import toast from "react-hot-toast";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { useFetchDailyMassDetail } from "@/hooks/dailymass/actions";
-import { updateDailyMass } from "@/services/dailymass";
+import { deleteDailyMass, updateDailyMass } from "@/services/dailymass";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function EditDailyMass({ params }) {
   const dailyMassSlug = use(params);
   const [loading, setLoading] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const axios = useAxiosAuth();
+  const router = useRouter();
 
   const {
     isLoading: isLoadingDailyMass,
     data: dailymass,
     refetch: refetchDailyMass,
   } = useFetchDailyMassDetail(dailyMassSlug?.dailyMassSlug);
+
+  const handleDelete = async () => {
+    setDeleting(true);
+    try {
+      await deleteDailyMass(dailymass?.slug, axios);
+      toast.success("Daily Mass deleted successfully");
+      router?.push("/dailymass");
+    } catch (error) {
+      toast.error("Error deleting Daily Mass");
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   if (isLoadingDailyMass) return <LoadingSpinner />;
 
@@ -224,20 +240,42 @@ function EditDailyMass({ params }) {
               </div>
             </div>
 
-            {/* Submit Button */}
-            <button type="submit" className="btn" disabled={loading}>
-              {loading ? (
-                <>
-                  <span
-                    className="spinner-border spinner-border-sm me-2"
-                    role="status"
-                  />
-                  Updating...
-                </>
-              ) : (
-                "Update"
-              )}
-            </button>
+            <div className="d-flex gap-2 align-items-center">
+              {/* Submit Button */}
+              <button type="submit" className="btn" disabled={loading}>
+                {loading ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                    />
+                    Updating...
+                  </>
+                ) : (
+                  "Update"
+                )}
+              </button>
+
+              {/* delete button */}
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={handleDelete}
+                disabled={deleting}
+              >
+                {deleting ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                    />
+                    Deleting...
+                  </>
+                ) : (
+                  "Delete"
+                )}
+              </button>
+            </div>
           </Form>
         )}
       </Formik>
