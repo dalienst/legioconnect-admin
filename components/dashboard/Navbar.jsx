@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="navbar sticky-top navbar-expand-md navbar-style mb-3 shadow rounded">
+    <nav className="navbar sticky-top navbar-expand-md navbar-style mb-3">
       <div className="container-fluid">
         <Link href="/dashboard" className="navbar-brand text-white fw-bold">
           LegioConnect
@@ -40,6 +40,32 @@ export default function Navbar() {
                 }`}
               >
                 Dashboard
+              </Link>
+            </li>
+
+            <li className="nav-item ">
+              <Link
+                href="/kitapLemo"
+                className={`${
+                  pathname === "/kitapLemo"
+                    ? "nav-link text-info"
+                    : "nav-link  text-white"
+                }`}
+              >
+                KitapLemo
+              </Link>
+            </li>
+
+            <li className="nav-item ">
+              <Link
+                href="/dailymass"
+                className={`${
+                  pathname === "/dailymass"
+                    ? "nav-link text-info"
+                    : "nav-link  text-white"
+                }`}
+              >
+                Daily Mass
               </Link>
             </li>
 

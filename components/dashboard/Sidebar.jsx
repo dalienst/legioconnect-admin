@@ -72,6 +72,33 @@ function Sidebar() {
 
         <div className="mb-1 w-100 p-2 sidebar-btn rounded border">
           <Link
+            href="/kitapLemo"
+            className={`${
+              pathname === "/kitapLemo"
+                ? "nav-link text-info"
+                : "nav-link  text-dark"
+
+            }`}
+          >
+            KitapLemo
+          </Link>
+        </div>
+
+        <div className="mb-1 w-100 p-2 sidebar-btn rounded border">
+          <Link
+            href="/dailymass"
+            className={`${
+              pathname === "/dailymass"
+                ? "nav-link text-info"
+                : "nav-link  text-dark"
+            }`}
+          >
+            Daily Mass
+          </Link>
+        </div>
+
+        <div className="mb-1 w-100 p-2 sidebar-btn rounded border">
+          <Link
             href="/users"
             className={`${
               pathname === "/users"

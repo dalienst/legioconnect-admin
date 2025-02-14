@@ -32,7 +32,6 @@ function SubcategoriesPrayerDisplay({ subcategory, refetchSubcategory }) {
       toast.success("Prayer deleted successfully");
       refetchSubcategory();
     } catch (error) {
-      console.log(error);
       toast.error("Error deleting prayer");
     } finally {
       setDeleting((prev) => ({ ...prev, [slug]: false })); // Reset only the clicked prayer

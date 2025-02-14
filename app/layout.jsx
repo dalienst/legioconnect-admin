@@ -6,6 +6,8 @@ import { Toaster } from "react-hot-toast";
 import NextAuthProvider from "@/providers/NextAuthProvider";
 import TanstackQueryProvider from "@/providers/TanstackQueryProvider";
 import BootstrapClient from "@/providers/BootstrapClient";
+import "froala-editor/css/froala_style.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
 
 export default function RootLayout({ children }) {
   return (
