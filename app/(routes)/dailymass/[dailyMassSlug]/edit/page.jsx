@@ -1,5 +1,4 @@
 "use client";
-import TextEditor from "@/components/froala/TextEditor";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { Field, Form, Formik } from "formik";
 import React, { use, useState } from "react";
@@ -156,12 +155,7 @@ function EditDailyMass({ params }) {
                 <label className="form-label fw-semibold">
                   Reading One Text
                 </label>
-                <TextEditor
-                  value={values.reading_one_text}
-                  onModelChange={(content) =>
-                    setFieldValue("reading_one_text", content)
-                  }
-                />
+                <Field name="reading_one_text" as="textarea" rows={3} className="form-control" />
               </div>
             </div>
 
@@ -182,11 +176,12 @@ function EditDailyMass({ params }) {
                 <label htmlFor="responsorial_psalm" className="form-label">
                   Responsorial Psalm
                 </label>
-                <TextEditor
-                  value={values?.responsorial_psalm}
-                  onModelChange={(content) =>
-                    setFieldValue("responsorial_psalm", content)
-                  }
+                <Field
+                  className="form-control"
+                  name="responsorial_psalm"
+                  placeholder="Psalm 1"
+                  as="textarea"
+                  rows={3}
                 />
               </div>
             </div>
@@ -207,13 +202,7 @@ function EditDailyMass({ params }) {
                 <label className="form-label fw-semibold">
                   Reading Two Text
                 </label>
-                <TextEditor
-                  value={values.reading_two_text}
-                  onModelChange={(content) =>
-                    setFieldValue("reading_two_text", content)
-                  }
-                  className="form-control"
-                />
+                <Field name="reading_two_text" as="textarea" rows={3} className="form-control" />
               </div>
             </div>
 
@@ -231,12 +220,7 @@ function EditDailyMass({ params }) {
               </div>
               <div className="mb-3">
                 <label className="form-label fw-semibold">Gospel Text</label>
-                <TextEditor
-                  value={values.gospel_text}
-                  onModelChange={(content) =>
-                    setFieldValue("gospel_text", content)
-                  }
-                />
+                <Field name="gospel_text" as="textarea" rows={3} className="form-control" />
               </div>
             </div>
 

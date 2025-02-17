@@ -1,5 +1,4 @@
 "use client";
-import TextEditor from "@/components/froala/TextEditor";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createDailyMass } from "@/services/dailymass";
 import { Field, Form, Formik } from "formik";
@@ -110,11 +109,11 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
                 <label className="form-label fw-semibold">
                   Reading One Text
                 </label>
-                <TextEditor
-                  value={values.reading_one_text}
-                  onModelChange={(content) =>
-                    setFieldValue("reading_one_text", content)
-                  }
+                <Field
+                  className="form-control"
+                  name="reading_one_text"
+                  placeholder="Genesis 2:4b-9, 15-17"
+                  as="textarea"
                 />
               </div>
             </div>
@@ -136,11 +135,11 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
                 <label htmlFor="responsorial_psalm" className="form-label">
                   Responsorial Psalm
                 </label>
-                <TextEditor
-                  value={values?.responsorial_psalm}
-                  onModelChange={(content) =>
-                    setFieldValue("responsorial_psalm", content)
-                  }
+                <Field
+                  className="form-control"
+                  name="responsorial_psalm"
+                  placeholder="Genesis 2:4b-9, 15-17"
+                  as="textarea"
                 />
               </div>
             </div>
@@ -158,15 +157,17 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label fw-semibold">
+                <label
+                  className="form-label fw-semibold"
+                  htmlFor="reading_two_text"
+                >
                   Reading Two Text
                 </label>
-                <TextEditor
-                  value={values.reading_two_text}
-                  onModelChange={(content) =>
-                    setFieldValue("reading_two_text", content)
-                  }
+                <Field
                   className="form-control"
+                  name="reading_two_text"
+                  placeholder="Genesis 2:4b-9, 15-17"
+                  as="textarea"
                 />
               </div>
             </div>
@@ -184,12 +185,14 @@ function CreateDailyMass({ refetchDailyMass, closeModal }) {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label fw-semibold">Gospel Text</label>
-                <TextEditor
-                  value={values.gospel_text}
-                  onModelChange={(content) =>
-                    setFieldValue("gospel_text", content)
-                  }
+                <label className="form-label fw-semibold" htmlFor="gospel_text">
+                  Gospel Text
+                </label>
+                <Field
+                  className="form-control"
+                  name="gospel_text"
+                  placeholder="Genesis 2:4b-9, 15-17"
+                  as="textarea"
                 />
               </div>
             </div>
