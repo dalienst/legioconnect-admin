@@ -13,7 +13,6 @@ function DailyMassDetail({ params }) {
     refetch: refetchDailyMass,
   } = useFetchDailyMassDetail(dailyMassSlug?.dailyMassSlug);
 
-
   if (isLoadingDailyMass) return <LoadingSpinner />;
 
   return (
@@ -55,11 +54,7 @@ function DailyMassDetail({ params }) {
             <h6>{dailymass?.reading_one}</h6>
           </div>
         </section>
-        {dailymass?.reading_one_text && (
-          <div
-            dangerouslySetInnerHTML={{ __html: dailymass.reading_one_text }}
-          />
-        )}
+        <p>{dailymass.reading_one_text}</p>
       </section>
 
       {/* Responsorial Psalm */}
@@ -72,11 +67,7 @@ function DailyMassDetail({ params }) {
             <h6>{dailymass?.psalm}</h6>
           </div>
         </section>
-        {dailymass?.responsorial_psalm && (
-          <div
-            dangerouslySetInnerHTML={{ __html: dailymass.responsorial_psalm }}
-          />
-        )}
+        <p>{dailymass.responsorial_psalm}</p>
       </section>
 
       {/* Second Reading */}
@@ -90,11 +81,7 @@ function DailyMassDetail({ params }) {
               <h6>{dailymass?.reading_two}</h6>
             </div>
           </section>
-          {dailymass?.reading_two_text && (
-            <div
-              dangerouslySetInnerHTML={{ __html: dailymass.reading_two_text }}
-            />
-          )}
+          {dailymass?.reading_two_text && <p>{dailymass.reading_two_text}</p>}
         </section>
       )}
 
@@ -108,9 +95,7 @@ function DailyMassDetail({ params }) {
             <h6>{dailymass?.gospel}</h6>
           </div>
         </section>
-        {dailymass?.gospel_text && (
-          <div dangerouslySetInnerHTML={{ __html: dailymass.gospel_text }} />
-        )}
+        <p>{dailymass.gospel_text}</p>
       </section>
 
       {/* Floating Action Button (FAB) for Update */}
