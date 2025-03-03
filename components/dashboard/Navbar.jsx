@@ -97,6 +97,19 @@ export default function Navbar() {
 
             <li className="nav-item">
               <Link
+                href="/earlyaccess"
+                className={`${
+                  pathname === "/earlyaccess"
+                    ? "nav-link text-info"
+                    : "nav-link text-white"
+                }`}
+              >
+                Early Access
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
                 href="/reports"
                 className={`${
                   pathname === "/reports"

@@ -77,7 +77,6 @@ function Sidebar() {
               pathname === "/kitapLemo"
                 ? "nav-link text-info"
                 : "nav-link  text-dark"
-
             }`}
           >
             KitapLemo
@@ -120,6 +119,19 @@ function Sidebar() {
             }`}
           >
             Daily Verse
+          </Link>
+        </div>
+
+        <div className="mb-1 w-100 p-2 sidebar-btn rounded border">
+          <Link
+            href="/earlyaccess"
+            className={`${
+              pathname === "/earlyaccess"
+                ? "nav-link text-info"
+                : "nav-link text-dark"
+            }`}
+          >
+            Early Access Request
           </Link>
         </div>
 
