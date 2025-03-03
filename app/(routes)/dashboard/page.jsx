@@ -6,6 +6,7 @@ import AddDailyVerse from "@/forms/AddDailyVerse";
 import { useFetchAccount, useFetchUsers } from "@/hooks/accounts/actions";
 import { useFetchCategories } from "@/hooks/categories/actions";
 import { useFetchDailyVerses } from "@/hooks/dailyverse/dailyverse";
+import { useFetchEarlyAccess } from "@/hooks/earlyaccess/actions";
 import { useFetchReports } from "@/hooks/reports/actions";
 import DailyVerseTable from "@/tables/DailyVerseTable";
 import React, { useState } from "react";
@@ -48,12 +49,19 @@ function Dashboard() {
     refetch: refetchCategories,
   } = useFetchCategories();
 
+  const {
+    isLoading: isLoadingEarlyAccess,
+    data: earlyaccess,
+    refetch: refetchEarlyAccess,
+  } = useFetchEarlyAccess();
+
   if (
     isLoadingAccount ||
     isLoadingDailyVerses ||
     isLoadingUsers ||
     isLoadingReports ||
-    isLoadingCategories
+    isLoadingCategories ||
+    isLoadingEarlyAccess
   )
     return <LoadingSpinner />;
 
@@ -68,16 +76,28 @@ function Dashboard() {
       </section>
 
       <section className="row">
-        <div className="col-md-4 col-sm-12 mb-3">
+        <div className="col-md-3 col-sm-12 mb-3">
           <DataCard item={users} title="User Accounts Created" link="users" />
         </div>
 
-        <div className="col-md-4 col-sm-12 mb-3">
-          <DataCard item={dailyverses} title="Daily Verses Created" link="" />
+        <div className="col-md-3 col-sm-12 mb-3">
+          <DataCard
+            item={dailyverses}
+            title="Daily Verses Created"
+            link="verses"
+          />
         </div>
 
-        <div className="col-md-4 col-sm-12 mb-3">
+        <div className="col-md-3 col-sm-12 mb-3">
           <DataCard item={reports} title="Reports Created" link="reports" />
+        </div>
+
+        <div className="col-md-3 col-sm-12 mb-3">
+          <DataCard
+            item={earlyaccess}
+            title="Early Access Requests"
+            link="earlyaccess"
+          />
         </div>
       </section>
 

@@ -61,7 +61,8 @@ function Footer() {
               deeper engagement with the faith.
             </p>
             <Link
-              href="https://play.google.com/apps/testing/com.dalienst.legioconnect"
+              // href="https://play.google.com/apps/testing/com.dalienst.legioconnect"
+              href="/early-access"
               target="_blank"
               className="d-inline-flex align-items-center gap-2"
               style={{ width: "auto" }}

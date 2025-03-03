@@ -12,5 +12,6 @@ export const config = {
     "/categories/:path*",
     "/prayers/:path*",
     "/dailymass/:path*",
+    "/earlyaccess/:path*",
   ],
 };
