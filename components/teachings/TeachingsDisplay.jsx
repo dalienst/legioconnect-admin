@@ -8,25 +8,21 @@ function TeachingsDisplay({ teachings }) {
     <div className="row g-4">
       {teachings?.map((teaching) => (
         <div key={teaching.reference} className="col-md-6 col-lg-4">
-          <div className="card h-100 shadow border-0 teaching-card">
-            {/* Optional: Add a placeholder image or teaching-specific image */}
-            <div className="card-img-top bg-light text-center py-4">
-              <span className="text-muted">No Image</span>
-            </div>
-            <div className="card-body p-4">
+          <div className="card h-100 shadow border-0 teaching-card d-flex flex-column">
+            <div className="card-body p-4 flex-grow-1 d-flex flex-column">
               <p className="card-text text-muted small mb-2">
                 {extractDate(teaching?.created_at)}
               </p>
               <Link
                 href={`/teachings/${teaching.identity}`}
-                className="card-title text-decoration-none h5 fw-bold text-dark d-block mb-3"
+                className="card-title text-decoration-none h5 fw-bold text-dark d-block mb-2 text-truncate"
               >
                 {teaching.title}
               </Link>
-              <h6 className="card-subtitle mb-3 text-muted">
+              <h6 className="card-subtitle mb-3 text-muted text-truncate">
                 {teaching.location} - {teaching.date}
               </h6>
-              <p className="card-text text-truncate-multiline">
+              <p className="card-text text-truncate-multiline flex-grow-1 mb-0">
                 {teaching.content}
               </p>
             </div>
@@ -34,6 +30,7 @@ function TeachingsDisplay({ teachings }) {
               <Link
                 href={`/teachings/${teaching.identity}`}
                 className="btn btn-outline-primary btn-sm"
+                aria-label={`Read more about ${teaching.title}`}
               >
                 Read More
               </Link>

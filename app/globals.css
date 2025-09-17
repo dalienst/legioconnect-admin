@@ -161,3 +161,15 @@ body {
   color: #ffffff;
 } */
 
+.text-truncate-multiline {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  /* Consistent line height */
+  max-height: 4.5em;
+  /* 3 lines * 1.5em line height */
+}

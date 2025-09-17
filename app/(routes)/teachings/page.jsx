@@ -2,6 +2,7 @@
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import TeachingsDisplay from "@/components/teachings/TeachingsDisplay";
 import CreateTeachings from "@/forms/teachings/CreateTeachings";
+import { useFetchTeachings } from "@/hooks/teachings/actions";
 import Link from "next/link";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
