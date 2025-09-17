@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTeachings } from "@/services/teachings";
+import { getTeachingDetail, getTeachings } from "@/services/teachings";
 
 export function useFetchTeachings() {
   return useQuery({
