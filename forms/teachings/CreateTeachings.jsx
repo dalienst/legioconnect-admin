@@ -1,14 +1,22 @@
 "use client";
 
+import RichTextEditor from "@/components/RichTextEditor";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createTeaching } from "@/services/teachings";
 import { Field, Form, Formik } from "formik";
+import { draftToMarkdown } from "markdown-draft-js";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { date } from "yup";
+import Markdown from "react-markdown";
 
 function CreateTeachings({ refetchTeachings, closeModal }) {
   const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState('');
+  const handleEditorChange = (draft) => {
+    const markdownContent = draftToMarkdown(draft);
+    setContent(markdownContent);
+  };
+
   const token = useAxiosAuth();
 
   return (
@@ -18,19 +26,23 @@ function CreateTeachings({ refetchTeachings, closeModal }) {
           title: "",
           location: "",
           date: "",
-          content: "",
         }}
         onSubmit={async (values) => {
           setLoading(true);
+          const valuesWithContent = { ...values, content };
+          let shouldCloseModal = false;
           try {
-            await createTeaching(values, token);
+            await createTeaching(valuesWithContent, token);
             toast.success("Teaching created successfully");
             refetchTeachings();
-            closeModal();
+            shouldCloseModal = true;
           } catch (error) {
             toast.error("Something went wrong");
           } finally {
             setLoading(false);
+            if (shouldCloseModal){
+              closeModal();
+            }
           }
         }}
       >
@@ -77,13 +89,11 @@ function CreateTeachings({ refetchTeachings, closeModal }) {
               <label htmlFor="content" className="form-label fw-semibold">
                 Content
               </label>
-              <Field
-                className="form-control"
-                name="content"
-                as="textarea"
-                placeholder="Content"
-                rows={15}
+             
+              <RichTextEditor
+                onChange={handleEditorChange}
               />
+
             </div>
 
             <button

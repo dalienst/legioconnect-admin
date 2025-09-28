@@ -2,6 +2,7 @@
 import extractDate from "@/hooks/useDateFormat";
 import Link from "next/link";
 import React from "react";
+import Markdown from "../Markdown";
 
 function TeachingsDisplay({ teachings }) {
   return (
@@ -22,9 +23,7 @@ function TeachingsDisplay({ teachings }) {
               <h6 className="card-subtitle mb-3 text-muted text-truncate">
                 {teaching.location} - {teaching.date}
               </h6>
-              <p className="card-text text-truncate-multiline flex-grow-1 mb-0">
-                {teaching.content}
-              </p>
+                <Markdown>{teaching.content}</Markdown>
             </div>
             <div className="card-footer bg-transparent border-0 p-4 pt-0">
               <Link
