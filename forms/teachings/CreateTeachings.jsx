@@ -7,7 +7,6 @@ import { Field, Form, Formik } from "formik";
 import { draftToMarkdown } from "markdown-draft-js";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import Markdown from "react-markdown";
 
 function CreateTeachings({ refetchTeachings, closeModal }) {
   const [loading, setLoading] = useState(false);
