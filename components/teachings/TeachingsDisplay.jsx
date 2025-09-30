@@ -4,12 +4,18 @@ import Link from "next/link";
 import React from "react";
 import Markdown from "../Markdown";
 
+// Utility function to truncate text
+const truncateText = (text, maxLength = 150) => {
+  if (!text || text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trim() + "...";
+};
+
 function TeachingsDisplay({ teachings }) {
   return (
     <div>
       {teachings?.map((teaching) => (
         <div key={teaching.reference}>
-          <div className="card h-100 shadow teaching-card d-flex flex-column">
+          <div className="card h-100 shadow teaching-card d-flex flex-column mb-3">
             <div className="card-header">
               <Link
                 href={`/teachings/${teaching.identity}`}
@@ -26,13 +32,14 @@ function TeachingsDisplay({ teachings }) {
                 {extractDate(teaching?.created_at)}
               </p>
 
-              <Markdown>{teaching.content}</Markdown>
+              {/* Truncate the content before passing to Markdown */}
+              <Markdown>{truncateText(teaching?.content)}</Markdown>
             </div>
             <div className="card-footer bg-transparent border-0 p-4 pt-0">
               <Link
                 href={`/teachings/${teaching.identity}`}
                 className="btn btn-outline-primary btn-sm"
-                aria-label={`Read more about ${teaching.title}`}
+                aria-label={`Read more about ${teaching?.title}`}
               >
                 Read More
               </Link>

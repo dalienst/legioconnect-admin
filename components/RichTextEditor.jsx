@@ -22,7 +22,7 @@ export default function RichTextEditor(props) {
      toolbar={{
         options: ["inline", "list", "link", "history"],
         inline: {
-            options:["bold", "italic",  "underline"]
+            options:["bold", "italic",  "underline", "strikethrough" ]
         }
      }}
     />
