@@ -1,14 +1,17 @@
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown";
 
-export default function Markdown({children}) {
+export default function Markdown({ children }) {
   return (
-    <ReactMarkdown
-    components={{
-        ul: (props) => <ul {...props}/>,
-        a: (props) => <a {...props}/>
-    }}
-    >
+    <div className="markdown-container">
+      <ReactMarkdown
+        components={{
+          ul: (props) => <ul className="markdown-list" {...props} />,
+          a: (props) => <a className="markdown-link" {...props} />,
+          p: (props) => <p className="markdown-paragraph" {...props} />,
+        }}
+      >
         {children}
-    </ReactMarkdown>
-  )
+      </ReactMarkdown>
+    </div>
+  );
 }
