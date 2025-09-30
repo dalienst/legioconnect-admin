@@ -161,3 +161,46 @@ body {
   color: #ffffff;
 } */
 
+.text-truncate-multiline {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  /* Consistent line height */
+  max-height: 4.5em;
+  /* 3 lines * 1.5em line height */
+}
+
+
+.markdown-container {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-x: auto;
+  /* Allows horizontal scrolling if content is too wide */
+  padding: 1rem;
+}
+
+.markdown-paragraph {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.markdown-list {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  list-style-type: disc;
+}
+
+.markdown-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.markdown-link:hover {
+  text-decoration: underline;
+}
