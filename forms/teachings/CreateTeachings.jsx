@@ -11,7 +11,7 @@ import Markdown from "react-markdown";
 
 function CreateTeachings({ refetchTeachings, closeModal }) {
   const [loading, setLoading] = useState(false);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState('Prayer');
   const handleEditorChange = (draft) => {
     const markdownContent = draftToMarkdown(draft);
     setContent(markdownContent);

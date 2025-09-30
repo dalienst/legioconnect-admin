@@ -23,10 +23,10 @@
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.6",
     "react-dom": "^18.3.1",
-    "react-markdown": "^9.0.1",
     "react-draft-wysiwyg": "^1.15.0",
     "react-froala-wysiwyg": "^4.4.0",
     "react-hot-toast": "^2.4.1",
+    "react-markdown": "^9.1.0",
     "slate": "^0.118.1",
     "slate-react": "^0.117.4",
     "yup": "^1.5.0"
