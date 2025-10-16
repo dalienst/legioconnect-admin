@@ -12,7 +12,7 @@ const truncateText = (text, maxLength = 120) => {
 function BlogCard({ blog }) {
   return (
     <div
-      className="card h-100 shadow-sm border-0"
+      className="card h-100 shadow-sm"
       style={{
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         cursor: "pointer",
