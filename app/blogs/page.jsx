@@ -19,7 +19,7 @@ function Blogs() {
   return (
     <>
       <Navbar />
-      <div className="container py-4">
+      <div className="container py-4 vh-100">
         <section className="mb-3">
           <h1 className="text-center fw-bold">Legio Maria Teachings</h1>
         </section>

@@ -21,19 +21,15 @@ function BlogCard({ blog }) {
           >
             {blog?.title}
           </Link>
-          <h6 className="card-subtitle mb-3 text-muted text-truncate">
+          <h6 className="card-subtitle text-muted text-truncate">
             {blog?.location} - {blog?.date}
           </h6>
-
-          <p className="card-text text-muted small mb-2">
-            {extractDate(blog?.created_at)}
-          </p>
 
           {/* Truncate the content before passing to Markdown */}
           <Markdown>{truncateText(blog?.content)}</Markdown>
         </div>
 
-        <div className="card-footer bg-transparent border-0 p-4 pt-0">
+        <div className="card-footer bg-transparent border-0 pt-0">
           <Link
             href={`/blogs/${blog.identity}`}
             className="btn btn-outline-primary btn-sm"
