@@ -18,13 +18,13 @@ function TeachingsDisplay({ teachings }) {
           <div className="card h-100 shadow teaching-card d-flex flex-column mb-3">
             <div className="card-header">
               <Link
-                href={`/teachings/${teaching.identity}`}
+                href={`/teachings/${teaching?.identity}`}
                 className="card-title text-decoration-none h5 fw-bold text-dark d-block mb-2 text-truncate"
               >
-                {teaching.title}
+                {teaching?.title}
               </Link>
               <h6 className="card-subtitle mb-3 text-muted text-truncate">
-                {teaching.location} - {teaching.date}
+                {teaching?.location} - {teaching?.date}
               </h6>
             </div>
             <div className="card-body p-4 flex-grow-1 d-flex flex-column">

@@ -37,6 +37,16 @@ function Navbar() {
 
             <li className="nav-item">
               <Link
+                href="/blogs"
+                className="nav-link text-white fw-bold"
+                aria-current="page"
+              >
+                Blogs
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
                 href="/feedback"
                 className="nav-link text-white fw-bold"
                 aria-current="page"
