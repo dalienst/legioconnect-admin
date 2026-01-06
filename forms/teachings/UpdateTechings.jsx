@@ -10,7 +10,14 @@ import toast from "react-hot-toast";
 
 function UpdateTeachings({ teaching, refetchTeachingDetail, closeModal }) {
   const [loading, setLoading] = useState(false);
-  const [content, setContent] = useState(teaching?.content || "Prayer");
+  const [content, setContent] = useState("Prayer");
+
+  useEffect(()=>{
+    if(teaching){
+     const markdownContent = draftToMarkdown(teaching?.content);
+    setContent(markdownContent); 
+    }
+  },[teaching])
 
   const handleEditorChange = (draft) => {
     const markdownContent = draftToMarkdown(draft);
